@@ -1,0 +1,7 @@
+{#- Startseite: die 3 neuesten Beiträge (automatisch, nichts von Hand pflegen).
+    data-w-id = Webflow-Hover-Animation des Bildes – nicht ändern. -#}
+<div class="blog-post-2-collection w-dyn-list"><div class="w-dyn-items w-row" role="list">
+{%- for b in collections.beitraege.slice(0, 3) %}
+<div class="collection-item-3 w-dyn-item w-col w-col-4" role="listitem"><a class="link-block w-inline-block" href="/neues/#{{ b.fileSlug }}"><img alt="{{ b.data.titel }}" class="post-thumb-image" data-w-id="192e9752-0905-be4b-77f4-c030d5dfaf93" sizes="(max-width: 479px) 96vw, (max-width: 767px) 97vw, (max-width: 991px) 31vw, 33vw" src="{{ b | bildUrl(b.data.bilder[0]) }}"/><div class="post-tag">{{ b.data.unterzeile }}</div><div class="oswald-no-hover">{{ b.data.titel }}</div><div class="black-module-line"></div></a></div>
+{%- endfor %}
+</div></div>

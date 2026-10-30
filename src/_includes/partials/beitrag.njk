@@ -1,0 +1,45 @@
+{#- Ein Beitrag auf der Seite "Neues". Erwartet: b = ein Eintrag aus collections.beitraege
+    Markup und Klassen 1:1 aus Webflow (damit webflow.css unverändert passt).
+    darstellung: einzelbild | lightbox | slider  (siehe docs/WEBSITE.md) -#}
+{%- set d = b.data -%}
+{%- set gruppe = "beitrag-" + b.fileSlug -%}
+<div class="collection-post-entry w-dyn-item" role="listitem" id="{{ b.fileSlug }}">
+<div class="post-tag">{{ d.unterzeile }}</div>
+<h2 class="heading">{{ d.titel }}</h2>
+
+{%- if d.darstellung == "slider" %}
+<div class="blog-slider w-slider" data-animation="slide" data-autoplay="false" data-autoplay-limit="0" data-delay="4000" data-disable-swipe="false" data-duration="500" data-easing="ease" data-hide-arrows="false" data-infinite="true" data-nav-spacing="3">
+  <div class="mask w-slider-mask">
+    {%- for bild in d.bilder %}
+    <div class="w-slide"><img alt="{{ d.titel }}" sizes="100vw" src="{{ b | bildUrl(bild) }}"{% if not loop.first %} loading="lazy"{% endif %}/></div>
+    {%- endfor %}
+  </div>
+  <div class="w-slider-arrow-left"><div class="w-icon-slider-left"></div></div>
+  <div class="w-slider-arrow-right"><div class="w-icon-slider-right"></div></div>
+  <div class="w-slider-nav w-round"></div>
+</div>
+
+{%- elif d.bilder and d.bilder.length %}
+<a class="blog-einzelbild w-inline-block w-lightbox" href="#"><img alt="{{ d.titel }}" loading="lazy" sizes="(max-width: 479px) 96vw, (max-width: 767px) 93vw, (max-width: 991px) 92vw, 800px" src="{{ b | bildUrl(d.bilder[0]) }}"/><script class="w-json" type="application/json">{"items":[{"url":"{{ b | bildUrl(d.bilder[0]) }}","type":"image"}],"group":"{{ gruppe }}"}</script></a>
+{%- if d.darstellung == "lightbox" %}
+{#- auch bei nur 1 Bild vorhanden: die (leere) Leiste sorgt wie in Webflow für 20px Abstand #}
+<div class="blog-lightbox">
+  {%- for bild in d.bilder.slice(1, 4) %}
+  <a class="lightbox-link w-inline-block w-lightbox" href="#"><img alt="{{ d.titel }}"{% if loop.first %} class="first-image-lightbox"{% endif %} loading="lazy" sizes="100vw" src="{{ b | bildUrl(bild) }}"/><script class="w-json" type="application/json">{"items":[{"url":"{{ b | bildUrl(bild) }}","type":"image"}],"group":"{{ gruppe }}"}</script></a>
+  {%- endfor %}
+</div>
+{%- endif %}
+{%- endif %}
+
+<div class="rich-text-block w-richtext">{{ b.content | safe }}</div>
+<div class="text-arrow-combo">
+  {%- if d.zusatzlink %}
+  <div class="link w-richtext">{{ d.zusatzlink | markdown | safe }}</div><img alt="" class="arrow-back" src="/assets/images/internal-link-arrow.svg"/>
+  {%- endif %}
+  <div class="spacer-div-25px"></div>
+</div>
+<div class="link-bottom-leiste">
+  <div class="blog-div-links"><a class="link-block-8 w-inline-block" href="/bestell-kontakt"><div class="link-zu-winzer-weinen">Unsere Kontaktdaten</div><div class="link-icon">a</div></a></div>
+  <div class="div-block-22"><a class="link-block-7 w-inline-block" href="/sortiment"><div class="link-zu-winzer-weinen">Unser Sortiment</div><div class="link-icon">C</div></a></div>
+</div>
+</div>

@@ -1,0 +1,16 @@
+{#- Seite "Neues": 5 Beiträge pro Seite, neueste zuerst. Seiten: /neues/, /neues/2/, /neues/3/ … -#}
+<div class="blog-wrapper"><div class="container"><div class="posts w-dyn-list"><div class="collection-blog w-dyn-items" role="list">
+{%- for b in beitraege %}
+{% include "partials/beitrag.njk" %}
+{%- endfor %}
+</div>
+{%- set seite = pagination.pageNumber + 1 %}
+{%- if pagination.pages.length > 1 %}
+<div aria-label="List" class="w-pagination-wrapper pagination" role="navigation">
+{%- if seite > 1 %}<a aria-label="Previous Page" class="w-pagination-previous previous" href="{% if seite == 2 %}/neues/{% else %}/neues/{{ seite - 1 }}/{% endif %}"><svg class="w-pagination-previous-icon" height="12px" transform="translate(0, 1)" viewBox="0 0 12 12" width="12px" xmlns="http://www.w3.org/2000/svg"><path d="M8 10L4 6l4-4" fill="none" fill-rule="evenodd" stroke="currentColor"></path></svg><div class="pagination-link-previous w-inline-block">Zurück</div></a>{% endif %}
+{%- if seite < pagination.pages.length %}<a aria-label="Next Page" class="w-pagination-next next" href="/neues/{{ seite + 1 }}/"><div class="pagination-link-previous w-inline-block">Weiter</div><svg class="w-pagination-next-icon" height="12px" transform="translate(0, 1)" viewBox="0 0 12 12" width="12px" xmlns="http://www.w3.org/2000/svg"><path d="M4 2l4 4-4 4" fill="none" fill-rule="evenodd" stroke="currentColor"></path></svg></a>{% endif %}
+</div>
+{%- endif %}
+</div></div></div>
+{#- Alte Webflow-Adressen (/neues?f5d5cea0_page=3) auf die neuen umleiten #}
+<script>(function(){var m=location.search.match(/f5d5cea0_page=(\d+)/);if(m&&+m[1]>1&&location.pathname.replace(/\/$/,"")==="/neues"){location.replace("/neues/"+m[1]+"/")}})();</script>

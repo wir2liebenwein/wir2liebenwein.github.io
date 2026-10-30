@@ -1,0 +1,16 @@
+{
+  "datei": "/downloads/weinliste.pdf",
+  "hinweis": "Seitenzahlen im PDF, auf die die Winzer-Seiten springen. Bei neuer Weinliste prüfen!",
+  "seiten": {
+    "beck": 4,
+    "gsellmann": 6,
+    "heinrich": 5,
+    "naturweine": 1,
+    "nittnaus": 6,
+    "pannobile": 3,
+    "pittnauer": 7,
+    "preisinger": 8,
+    "renner-sistas": 9,
+    "sortiment": 1
+  }
+}
