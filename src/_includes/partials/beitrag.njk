@@ -20,26 +20,26 @@
 </div>
 
 {%- elif d.bilder and d.bilder.length %}
-<a class="blog-einzelbild w-inline-block w-lightbox" href="#"><img alt="{{ d.titel }}" loading="lazy" sizes="(max-width: 479px) 96vw, (max-width: 767px) 93vw, (max-width: 991px) 92vw, 800px" src="{{ b | bildUrl(d.bilder[0]) }}"/><script class="w-json" type="application/json">{"items":[{"url":"{{ b | bildUrl(d.bilder[0]) }}","type":"image"}],"group":"{{ gruppe }}"}</script></a>
+<a class="blog-einzelbild inline-block w-lightbox" href="#"><img alt="{{ d.titel }}" loading="lazy" sizes="(max-width: 479px) 96vw, (max-width: 767px) 93vw, (max-width: 991px) 92vw, 800px" src="{{ b | bildUrl(d.bilder[0]) }}"/><script class="w-json" type="application/json">{"items":[{"url":"{{ b | bildUrl(d.bilder[0]) }}","type":"image"}],"group":"{{ gruppe }}"}</script></a>
 {%- if d.darstellung == "lightbox" %}
 {#- auch bei nur 1 Bild vorhanden: die (leere) Leiste sorgt wie in Webflow für 20px Abstand #}
 <div class="blog-lightbox">
   {%- for bild in d.bilder.slice(1, 4) %}
-  <a class="lightbox-link w-inline-block w-lightbox" href="#"><img alt="{{ d.titel }}"{% if loop.first %} class="first-image-lightbox"{% endif %} loading="lazy" sizes="100vw" src="{{ b | bildUrl(bild) }}"/><script class="w-json" type="application/json">{"items":[{"url":"{{ b | bildUrl(bild) }}","type":"image"}],"group":"{{ gruppe }}"}</script></a>
+  <a class="lightbox-link inline-block w-lightbox" href="#"><img alt="{{ d.titel }}"{% if loop.first %} class="first-image-lightbox"{% endif %} loading="lazy" sizes="100vw" src="{{ b | bildUrl(bild) }}"/><script class="w-json" type="application/json">{"items":[{"url":"{{ b | bildUrl(bild) }}","type":"image"}],"group":"{{ gruppe }}"}</script></a>
   {%- endfor %}
 </div>
 {%- endif %}
 {%- endif %}
 
-<div class="rich-text-block w-richtext">{{ b.content | safe }}</div>
+<div class="rich-text-block richtext">{{ b.content | safe }}</div>
 <div class="text-arrow-combo">
   {%- if d.zusatzlink %}
-  <div class="link w-richtext">{{ d.zusatzlink | markdown | safe }}</div><img alt="" class="arrow-back" src="/assets/images/internal-link-arrow.svg"/>
+  <div class="link richtext">{{ d.zusatzlink | markdown | safe }}</div><img alt="" class="arrow-back" src="/assets/images/internal-link-arrow.svg"/>
   {%- endif %}
   <div class="spacer-div-25px"></div>
 </div>
 <div class="link-bottom-leiste">
-  <div class="blog-div-links"><a class="link-block-8 w-inline-block" href="/bestell-kontakt"><div class="link-zu-winzer-weinen">Unsere Kontaktdaten</div><div class="link-icon">a</div></a></div>
-  <div class="div-block-22"><a class="link-block-7 w-inline-block" href="/sortiment"><div class="link-zu-winzer-weinen">Unser Sortiment</div><div class="link-icon">C</div></a></div>
+  <div class="blog-div-links"><a class="link-block-8 inline-block" href="/bestell-kontakt"><div class="link-zu-winzer-weinen">Unsere Kontaktdaten</div><div class="link-icon">a</div></a></div>
+  <div class="div-block-22"><a class="link-block-7 inline-block" href="/sortiment"><div class="link-zu-winzer-weinen">Unser Sortiment</div><div class="link-icon">C</div></a></div>
 </div>
 </div>
