@@ -5,7 +5,7 @@
 {%- set gruppe = "beitrag-" + b.fileSlug -%}
 <li class="collection-post-entry"><article id="{{ b.fileSlug }}">
 <p class="post-tag t-kicker">{{ d.unterzeile }}</p>
-<h2 class="heading t-section">{{ d.titel }}</h2>
+<h2 class="post-title t-section">{{ d.titel }}</h2>
 
 {%- if d.darstellung == "slider" %}
 <div class="blog-slider w-slider" data-animation="slide" data-autoplay="false" data-autoplay-limit="0" data-delay="4000" data-disable-swipe="false" data-duration="500" data-easing="ease" data-hide-arrows="false" data-infinite="true" data-nav-spacing="3">
@@ -39,7 +39,7 @@
   <div class="spacer-div-25px"></div>
 </div>
 <div class="link-bottom-leiste">
-  <div class="blog-div-links"><a class="link-block-8 inline-block" href="/bestell-kontakt"><div class="link-zu-winzer-weinen">Unsere Kontaktdaten</div><div class="link-icon">a</div></a></div>
-  <div class="div-block-22"><a class="link-block-7 inline-block" href="/sortiment"><div class="link-zu-winzer-weinen">Unser Sortiment</div><div class="link-icon">C</div></a></div>
+  <div class="blog-div-links"><a class="post-link-contact inline-block" href="/bestell-kontakt"><div class="link-zu-winzer-weinen">Unsere Kontaktdaten</div><div class="link-icon">a</div></a></div>
+  <div class="post-links-right"><a class="post-link-sortiment inline-block" href="/sortiment"><div class="link-zu-winzer-weinen">Unser Sortiment</div><div class="link-icon">C</div></a></div>
 </div>
 </article></li>

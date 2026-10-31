@@ -2,6 +2,6 @@
     data-w-id = Webflow-Hover-Animation des Bildes – nicht ändern. -#}
 <div class="blog-post-2-collection"><ul class="row reset-list">
 {%- for b in collections.beitraege.slice(0, 3) %}
-<li class="collection-item-3 col col-4"><a class="link-block inline-block" href="/neues/#{{ b.fileSlug }}"><img alt="{{ b.data.titel }}" class="post-thumb-image" data-w-id="192e9752-0905-be4b-77f4-c030d5dfaf93" sizes="(max-width: 479px) 96vw, (max-width: 767px) 97vw, (max-width: 991px) 31vw, 33vw" src="{{ b | bildUrl(b.data.bilder[0]) }}"/><p class="post-tag t-kicker">{{ b.data.unterzeile }}</p><h3 class="oswald-no-hover t-title">{{ b.data.titel }}</h3><div class="black-module-line"></div></a></li>
+<li class="teaser-item col col-4"><a class="teaser-link inline-block" href="/neues/#{{ b.fileSlug }}"><img alt="{{ b.data.titel }}" class="post-thumb-image" data-w-id="192e9752-0905-be4b-77f4-c030d5dfaf93" sizes="(max-width: 479px) 96vw, (max-width: 767px) 97vw, (max-width: 991px) 31vw, 33vw" src="{{ b | bildUrl(b.data.bilder[0]) }}"/><p class="post-tag t-kicker">{{ b.data.unterzeile }}</p><h3 class="oswald-no-hover t-title">{{ b.data.titel }}</h3><div class="black-module-line"></div></a></li>
 {%- endfor %}
 </ul></div>

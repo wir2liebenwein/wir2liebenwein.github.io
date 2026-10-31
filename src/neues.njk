@@ -9,7 +9,7 @@ pagination:
   alias: beitraege
 permalink: '{% if pagination.pageNumber == 0 %}/neues/{% else %}/neues/{{ pagination.pageNumber + 1 }}/{% endif %}'
 ---
-{% raw %}<div class="stage-max-width"><div class="news-stage"><div class="stage-headline-column-div row"><div class="column col col-9"><h1 class="h1 transparenz t-hero"><strong>Vielfalt im <br/>Trinken und <br/>Denken</strong></h1></div><div class="column-2 col col-3"><div class="div-block-8"></div></div></div></div></div>
+{% raw %}<div class="stage-max-width"><div class="news-stage"><div class="stage-headline-column-div row"><div class="stage-col-text col col-9"><h1 class="h1 transparenz t-hero"><strong>Vielfalt im <br/>Trinken und <br/>Denken</strong></h1></div><div class="stage-col-badge col col-3"><div class="stage-spacer"></div></div></div></div></div>
 {% endraw %}
 {% include "partials/neues-liste.njk" %}
 {% raw %}
