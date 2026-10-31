@@ -1733,6 +1733,7 @@ a:hover {
 
 .home-stage {
   background-image: linear-gradient(#0000004d, #0000004d), url("../images/home.jpg");
+  background-image: linear-gradient(#0000004d, #0000004d), image-set(url("../images/optimiert/home.webp") type("image/webp"), url("../images/home.jpg") type("image/jpeg"));
   background-position: 0 0, 50% 0;
   background-repeat: repeat, no-repeat;
   background-size: auto, cover;
@@ -1757,6 +1758,7 @@ a:hover {
 
 .news-stage {
   background-image: linear-gradient(#0000004d, #0000004d), url("../images/neues-780396.jpg");
+  background-image: linear-gradient(#0000004d, #0000004d), image-set(url("../images/optimiert/neues-780396.webp") type("image/webp"), url("../images/neues-780396.jpg") type("image/jpeg"));
   background-position: 0 0, 50% 0;
   background-repeat: repeat, no-repeat;
   background-size: auto, cover;
@@ -1766,6 +1768,7 @@ a:hover {
 
 .unser-wein-stage {
   background-image: linear-gradient(#0000004d, #0000004d), url("../images/unser_wein_header-2x.jpg");
+  background-image: linear-gradient(#0000004d, #0000004d), image-set(url("../images/optimiert/unser_wein_header-2x.webp") type("image/webp"), url("../images/unser_wein_header-2x.jpg") type("image/jpeg"));
   background-position: 0 0, 50% 0;
   background-repeat: repeat, no-repeat;
   background-size: auto, cover;
@@ -2107,6 +2110,7 @@ a:hover {
 
 .sortiment-stage {
   background-image: linear-gradient(#0000004d, #0000004d), url("../images/sortiment-3.jpg");
+  background-image: linear-gradient(#0000004d, #0000004d), image-set(url("../images/optimiert/sortiment-3.webp") type("image/webp"), url("../images/sortiment-3.jpg") type("image/jpeg"));
   background-position: 0 0, 50%;
   background-repeat: repeat, no-repeat;
   background-size: auto, cover;
@@ -2132,6 +2136,7 @@ a:hover {
 
 .bestell-kontakt-stage {
   background-image: linear-gradient(#00000059, #00000059), url("../images/bestell-kontakt-2x.jpg");
+  background-image: linear-gradient(#00000059, #00000059), image-set(url("../images/optimiert/bestell-kontakt-2x.webp") type("image/webp"), url("../images/bestell-kontakt-2x.jpg") type("image/jpeg"));
   background-position: 0 0, 50% 0;
   background-repeat: repeat, no-repeat;
   background-size: auto, cover;
@@ -2172,6 +2177,7 @@ a:hover {
 
 ._404-image-stage {
   background-image: linear-gradient(#00000059, #00000059), url("../images/404_header.jpg");
+  background-image: linear-gradient(#00000059, #00000059), image-set(url("../images/optimiert/404_header.webp") type("image/webp"), url("../images/404_header.jpg") type("image/jpeg"));
   background-position: 0 0, 50% 0;
   background-repeat: repeat, no-repeat;
   background-size: auto, cover;
@@ -2343,6 +2349,7 @@ a:hover {
 
 .bottleshop-header-image {
   background-image: linear-gradient(#00000059, #00000059), url("../images/bottleshop.jpg");
+  background-image: linear-gradient(#00000059, #00000059), image-set(url("../images/optimiert/bottleshop.webp") type("image/webp"), url("../images/bottleshop.jpg") type("image/jpeg"));
   background-position: 0 0, 50% 0;
   background-repeat: repeat, no-repeat;
   background-size: auto, cover;
@@ -2626,6 +2633,7 @@ a:hover {
 
   .home-stage {
     background-image: linear-gradient(#0000004d, #0000004d), url("../images/home.jpg");
+  background-image: linear-gradient(#0000004d, #0000004d), image-set(url("../images/optimiert/home.webp") type("image/webp"), url("../images/home.jpg") type("image/jpeg"));
     background-position: 0 0, 17% 0;
     background-repeat: repeat, repeat;
     background-size: auto, cover;
@@ -2644,6 +2652,7 @@ a:hover {
 
   .news-stage {
     background-image: linear-gradient(#0000004d, #0000004d), url("../images/vielfalt_im_denken.jpg");
+  background-image: linear-gradient(#0000004d, #0000004d), image-set(url("../images/optimiert/vielfalt_im_denken.webp") type("image/webp"), url("../images/vielfalt_im_denken.jpg") type("image/jpeg"));
     background-position: 0 0, 17% 0;
     background-repeat: repeat, repeat;
     background-size: auto, cover;
@@ -2653,6 +2662,7 @@ a:hover {
 
   .unser-wein-stage {
     background-image: linear-gradient(#0000004d, #0000004d), url("../images/unser_wein_header-2x.jpg");
+  background-image: linear-gradient(#0000004d, #0000004d), image-set(url("../images/optimiert/unser_wein_header-2x.webp") type("image/webp"), url("../images/unser_wein_header-2x.jpg") type("image/jpeg"));
     background-position: 0 0, 100%;
     background-repeat: repeat, repeat;
     background-size: auto, cover;
@@ -2717,6 +2727,7 @@ a:hover {
 
   .bestell-kontakt-stage {
     background-image: linear-gradient(#00000059, #00000059), url("../images/bestell-kontakt-2x.jpg");
+  background-image: linear-gradient(#00000059, #00000059), image-set(url("../images/optimiert/bestell-kontakt-2x.webp") type("image/webp"), url("../images/bestell-kontakt-2x.jpg") type("image/jpeg"));
     background-position: 0 0, 30% 0;
     background-repeat: repeat, no-repeat;
     background-size: auto, cover;
@@ -2734,6 +2745,7 @@ a:hover {
 
   ._404-image-stage {
     background-image: linear-gradient(#00000059, #00000059), url("../images/404_header.jpg");
+  background-image: linear-gradient(#00000059, #00000059), image-set(url("../images/optimiert/404_header.webp") type("image/webp"), url("../images/404_header.jpg") type("image/jpeg"));
     background-position: 0 0, 30% 0;
     background-repeat: repeat, no-repeat;
     background-size: auto, cover;
@@ -2751,6 +2763,7 @@ a:hover {
 
   .bottleshop-header-image {
     background-image: linear-gradient(#00000059, #00000059), url("../images/bestell-kontakt-2x.jpg");
+  background-image: linear-gradient(#00000059, #00000059), image-set(url("../images/optimiert/bestell-kontakt-2x.webp") type("image/webp"), url("../images/bestell-kontakt-2x.jpg") type("image/jpeg"));
     background-position: 0 0, 30% 0;
     background-repeat: repeat, no-repeat;
     background-size: auto, cover;
@@ -2969,6 +2982,7 @@ a:hover {
 
   .home-stage {
     background-image: linear-gradient(#0000004d, #0000004d), url("../images/home.jpg");
+  background-image: linear-gradient(#0000004d, #0000004d), image-set(url("../images/optimiert/home-1080.webp") type("image/webp"), url("../images/home.jpg") type("image/jpeg"));
     background-position: 0 0, 14% 0;
     height: 80vh;
     padding-left: 0;
@@ -2987,6 +3001,7 @@ a:hover {
 
   .news-stage {
     background-image: linear-gradient(#0000004d, #0000004d), url("../images/vielfalt_im_denken.jpg");
+  background-image: linear-gradient(#0000004d, #0000004d), image-set(url("../images/optimiert/vielfalt_im_denken-1080.webp") type("image/webp"), url("../images/vielfalt_im_denken.jpg") type("image/jpeg"));
     background-position: 0 0, 14% 0;
     background-repeat: repeat, no-repeat;
     height: 80vh;
@@ -2995,6 +3010,7 @@ a:hover {
 
   .unser-wein-stage {
     background-image: linear-gradient(#0000004d, #0000004d), url("../images/unser_wein_header-2x.jpg");
+  background-image: linear-gradient(#0000004d, #0000004d), image-set(url("../images/optimiert/unser_wein_header-2x-1080.webp") type("image/webp"), url("../images/unser_wein_header-2x.jpg") type("image/jpeg"));
     background-position: 0 0, 95%;
     height: 80vh;
     padding-left: 0;
@@ -3066,6 +3082,7 @@ a:hover {
 
   .bestell-kontakt-stage {
     background-image: linear-gradient(#00000059, #00000059), url("../images/bestell-kontakt-2x.jpg");
+  background-image: linear-gradient(#00000059, #00000059), image-set(url("../images/optimiert/bestell-kontakt-2x-1080.webp") type("image/webp"), url("../images/bestell-kontakt-2x.jpg") type("image/jpeg"));
     background-position: 0 0, 20% 0;
     background-repeat: repeat, no-repeat;
     height: 80vh;
@@ -3078,6 +3095,7 @@ a:hover {
 
   ._404-image-stage {
     background-image: linear-gradient(#00000059, #00000059), url("../images/404_header.jpg");
+  background-image: linear-gradient(#00000059, #00000059), image-set(url("../images/optimiert/404_header-1080.webp") type("image/webp"), url("../images/404_header.jpg") type("image/jpeg"));
     background-position: 0 0, 30% 0;
     background-repeat: repeat, no-repeat;
     height: 80vh;
@@ -3111,6 +3129,7 @@ a:hover {
 
   .bottleshop-header-image {
     background-image: linear-gradient(#00000059, #00000059), url("../images/bestell-kontakt-2x.jpg");
+  background-image: linear-gradient(#00000059, #00000059), image-set(url("../images/optimiert/bestell-kontakt-2x-1080.webp") type("image/webp"), url("../images/bestell-kontakt-2x.jpg") type("image/jpeg"));
     background-position: 0 0, 20% 0;
     background-repeat: repeat, no-repeat;
     height: 80vh;
@@ -3379,6 +3398,7 @@ a:hover {
 
   .home-stage {
     background-image: linear-gradient(#0000004d, #0000004d), url("../images/home.jpg");
+  background-image: linear-gradient(#0000004d, #0000004d), image-set(url("../images/optimiert/home-1080.webp") type("image/webp"), url("../images/home.jpg") type("image/jpeg"));
     background-position: 0 0, 19% 0;
     height: 60vh;
     padding-left: 0;
@@ -3506,6 +3526,7 @@ a:hover {
 
   .bestell-kontakt-stage {
     background-image: linear-gradient(#00000059, #00000059), url("../images/bestell-kontakt-2x.jpg");
+  background-image: linear-gradient(#00000059, #00000059), image-set(url("../images/optimiert/bestell-kontakt-2x-1080.webp") type("image/webp"), url("../images/bestell-kontakt-2x.jpg") type("image/jpeg"));
     background-position: 0 0, 40% 0;
     background-repeat: repeat, no-repeat;
     background-size: auto, cover;
@@ -3523,6 +3544,7 @@ a:hover {
 
   ._404-image-stage {
     background-image: linear-gradient(#00000059, #00000059), url("../images/404_header.jpg");
+  background-image: linear-gradient(#00000059, #00000059), image-set(url("../images/optimiert/404_header-1080.webp") type("image/webp"), url("../images/404_header.jpg") type("image/jpeg"));
     background-position: 0 0, 30% 0;
     background-repeat: repeat, no-repeat;
     background-size: auto, cover;
@@ -3574,6 +3596,7 @@ a:hover {
 
   .bottleshop-header-image {
     background-image: linear-gradient(#00000059, #00000059), url("../images/bestell-kontakt-2x.jpg");
+  background-image: linear-gradient(#00000059, #00000059), image-set(url("../images/optimiert/bestell-kontakt-2x-1080.webp") type("image/webp"), url("../images/bestell-kontakt-2x.jpg") type("image/jpeg"));
     background-position: 0 0, 40% 0;
     background-repeat: repeat, no-repeat;
     background-size: auto, cover;
