@@ -50,8 +50,9 @@ npm ci            # Node 22 oder neuer
 npm run build     # muss ohne Fehler durchlaufen
 ```
 
-Vor jeder Arbeit `git pull`, denn vielleicht hat jemand anderes inzwischen etwas
-geändert.
+Vor jeder Arbeit `git pull` und danach `npm ci`, denn vielleicht hat jemand anderes
+inzwischen etwas geändert (auch die Werkzeuge, die der Build braucht). Ohne `npm ci`
+bricht `npm run build` dann mit „Cannot find package …“ ab.
 
 ---
 
