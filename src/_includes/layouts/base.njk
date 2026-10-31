@@ -3,14 +3,19 @@
 <html lang="de">
 <head>
   <meta charset="utf-8"/>
-  <title>{{ title }}</title>
+  {#- Seitentitel: "<title> – Wir2LiebenWein". Folgeseiten von /neues/ bekommen "– Seite N".
+      Wer einen ganz eigenen Titel braucht (Startseite), setzt titel_komplett. -#}
+  {%- if titel_komplett %}{% set seitentitel = titel_komplett %}
+  {%- elif pagination and pagination.pageNumber > 0 %}{% set seitentitel = title + " – Seite " + (pagination.pageNumber + 1) + " – " + site.name %}
+  {%- else %}{% set seitentitel = title + " – " + site.name %}{% endif %}
+  <title>{{ seitentitel }}</title>
   {%- if description %}
   <meta content="{{ description }}" name="description"/>
   <meta content="{{ description }}" property="og:description"/>
   <meta content="{{ description }}" property="twitter:description"/>
   {%- endif %}
-  <meta content="{{ og_title or title }}" property="og:title"/>
-  <meta content="{{ og_title or title }}" property="twitter:title"/>
+  <meta content="{{ seitentitel }}" property="og:title"/>
+  <meta content="{{ seitentitel }}" property="twitter:title"/>
   <meta property="og:type" content="website"/>
   <meta property="og:site_name" content="{{ site.name }}"/>
   <meta property="og:locale" content="de_DE"/>

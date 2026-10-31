@@ -90,7 +90,9 @@ small script. The blog is generated from Markdown files.
 | `/404.html` | `seiten/404.html` | static | Shown for unknown URLs |
 
 Static pages are hand-maintained HTML (body only), originally from the Webflow export.
-Their front matter holds the `<title>` and meta description. They are copied 1:1;
+Their front matter holds the page name (`title:`) and meta description. The layout
+adds " – Wir2LiebenWein" to the name, so `title: Bottleshop` becomes the `<title>`
+"Bottleshop – Wir2LiebenWein". They are copied 1:1;
 `htmlTemplateEngine: false` makes sure nothing inside them is interpreted as a template.
 
 URLs keep the Webflow paths. The new site serves them with a trailing slash
@@ -103,6 +105,10 @@ URLs keep the Webflow paths. The new site serves them with a trailing slash
 1. **`<head>`**: title/description/OpenGraph from front matter, canonical URL and
    og:url/og:image/og:locale (from `src/_data/site.json`), font preloads, `site.css`,
    favicon/webclip. The 404 page gets `noindex`.
+   The `<title>` (and og:/twitter:title) is built here: `<title> – Wir2LiebenWein`;
+   the pages /neues/2/ … get `Neues – Seite N – Wir2LiebenWein` automatically. A page
+   that needs a completely different title sets `titel_komplett:` (only the homepage
+   does: "Wir2LiebenWein – Naturwein in München-Westend").
 2. **Navigation** (`partials/nav.njk`): logo (wordmark + sign) and the links Neues ·
    Bottleshop · Winzer / Wein · Verkostung · Über Uns · Bestellen · Sortiment.
    "Bestellen" and "Sortiment" carry icon-font glyphs. On tablet and phone (below
@@ -350,9 +356,8 @@ in some mobile image heights.
    used) and does not mention hosting. It must be updated for GitHub Pages, and the
    YouTube embed on `/pannobile/` should be mentioned or switched to
    `youtube-nocookie.com`.
-5. Small things: the copyright line says 2020, the homepage `<title>` is just "W2LW",
-   and the newest post contains the typo "Ticktes" and a stray backslash
-   ("… näher zu bringen.\\").
+5. Small things: the copyright line says 2020, and the newest post contains the typo
+   "Ticktes" and a stray backslash ("… näher zu bringen.\\").
 
 Point 4 is partly done: the video now uses `youtube-nocookie.com`; the text of the
 Datenschutzerklärung still needs updating.

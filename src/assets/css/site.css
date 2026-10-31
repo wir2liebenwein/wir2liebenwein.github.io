@@ -213,7 +213,7 @@ p {
 }
 
 /* Texte, die früher div waren und jetzt p sind, behalten die Abstände eines div. */
-.t-kicker, .t-byline, .t-lead, .datenschutz-absatz {
+.t-kicker, .t-byline, .t-lead, .datenschutz-absatz, p.t-section {
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -735,6 +735,17 @@ button, [type="button"] {
 
 .richtext ol, .richtext ul {
   overflow: hidden;
+}
+
+/* Weinpakete: die sechs Weine als Liste (Name fett, Rebsorten darunter), Abstände wie vorher. */
+.wein-liste {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+}
+
+.wein-liste li + li {
+  margin-top: 26px;
 }
 
 .w-nav {
@@ -2407,7 +2418,7 @@ a:hover {
     --lh-hero: 74px;
     --fs-lead: 24px;
     --lh-lead: 34px;
-    --fs-small: 16px;
+    --fs-small: 18px;
     --section-margin-top: 0px;
 }
 
@@ -2800,12 +2811,12 @@ a:hover {
 @media screen and (max-width: 767px) {
   :root {
     --fs-display: 152px;
-    --fs-hero: 54px;
+    --fs-hero: 50px;
     --lh-hero: 62px;
     --fs-page: 70px;
     --lh-page: 78px;
-    --fs-lead: 22px;
-    --lh-lead: 30px;
+    --fs-lead: 24px;
+    --lh-lead: 34px;
     --fs-quote: 32px;
     --lh-quote: 38px;
 }
@@ -3158,11 +3169,11 @@ a:hover {
     --lh-hero: 56px;
     --fs-page: 44px;
     --lh-page: 50px;
-    --fs-section: 36px;
+    --fs-section: 32px;
     --lh-section: 40px;
-    --fs-lead: 20px;
+    --fs-lead: 18px;
     --lh-lead: 30px;
-    --fs-quote: 26px;
+    --fs-quote: 24px;
     --lh-quote: 36px;
     --lh-serif: 26px;
     --subtitle-margin-bottom: 9px;
