@@ -213,7 +213,7 @@ p {
 }
 
 /* Texte, die früher div waren und jetzt p sind, behalten die Abstände eines div. */
-.t-kicker, .t-byline, .t-lead, .datenschutz-absatz {
+.t-kicker, .t-byline, .t-lead, .datenschutz-absatz, p.t-section {
   margin-top: 0;
   margin-bottom: 0;
 }
