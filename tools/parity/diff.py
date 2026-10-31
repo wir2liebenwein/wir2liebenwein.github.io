@@ -21,9 +21,10 @@ def main(a_dir, b_dir, d_dir):
         if not (os.path.exists(pa) and os.path.exists(pb)):
             print(f'MISSING {n}  ({"current" if os.path.exists(pa) else "baseline"})'); changed += 1; continue
         A, B = load(pa), load(pb)
-        if A.shape != B.shape:
-            print(f'SIZE  {n}  {A.shape[1]}x{A.shape[0]} -> {B.shape[1]}x{B.shape[0]}'); changed += 1
-            h = min(A.shape[0], B.shape[0]); A, B = A[:h], B[:h]
+        same_size = A.shape == B.shape
+        if not same_size:
+            print(f'SIZE  {n}  {A.shape[1]}x{A.shape[0]} -> {B.shape[1]}x{B.shape[0]}')
+            h, w = min(A.shape[0], B.shape[0]), min(A.shape[1], B.shape[1]); A, B = A[:h, :w], B[:h, :w]
         mask = np.abs(A - B).max(axis=2) > 0
         if mask.any():
             ys, xs = np.nonzero(mask)
@@ -33,7 +34,8 @@ def main(a_dir, b_dir, d_dir):
             out = np.stack([img, img, img], axis=2)
             out[mask] = (255, 0, 0)
             Image.fromarray(out).save(os.path.join(d_dir, n))
-            changed += 1 if A.shape == B.shape else 0
+        if mask.any() or not same_size:
+            changed += 1
     print('changed:', changed)
     return 1 if changed else 0
 

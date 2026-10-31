@@ -2128,7 +2128,7 @@ textarea.w-input, textarea.w-select {
   src: url("../fonts/w2lw-icon-font.woff") format("woff");
   font-weight: 400;
   font-style: normal;
-  font-display: auto;
+  font-display: block;
 }
 
 @font-face {
@@ -2136,12 +2136,13 @@ textarea.w-input, textarea.w-select {
   src: url("../fonts/facebook-icon.woff") format("woff");
   font-weight: 400;
   font-style: normal;
-  font-display: auto;
+  font-display: block;
 }
 
+/* Text fonts: WOFF2, Latin subset (tools/fonts/subset.sh). */
 @font-face {
   font-family: Oswald Bold;
-  src: url("../fonts/oswald-variablefont_wght.ttf") format("truetype");
+  src: url("../fonts/oswald-variablefont_wght.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -2149,7 +2150,7 @@ textarea.w-input, textarea.w-select {
 
 @font-face {
   font-family: Source Sans Pro Bold;
-  src: url("../fonts/sourcesanspro-bold.ttf") format("truetype");
+  src: url("../fonts/sourcesanspro-bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -2157,7 +2158,7 @@ textarea.w-input, textarea.w-select {
 
 @font-face {
   font-family: Source Sans Pro Regular;
-  src: url("../fonts/sourcesanspro-regular.ttf") format("truetype");
+  src: url("../fonts/sourcesanspro-regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -2165,7 +2166,7 @@ textarea.w-input, textarea.w-select {
 
 @font-face {
   font-family: Libre Baskerville Regular;
-  src: url("../fonts/librebaskerville-regular.ttf") format("truetype");
+  src: url("../fonts/librebaskerville-regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -2267,7 +2268,7 @@ h3 {
 h4 {
   margin-top: 0;
   margin-bottom: 0;
-  font-family: Source Sans Pro;
+  font-family: Source Sans Pro Bold, sans-serif;
   font-size: 18px;
   font-weight: 700;
   line-height: 24px;
@@ -2302,7 +2303,7 @@ blockquote {
   border-left: 5px solid #e2e2e2;
   margin-bottom: 10px;
   padding: 10px 20px;
-  font-family: Libre Baskerville;
+  font-family: Libre Baskerville Regular, sans-serif;
   font-size: 30px;
   line-height: 44px;
 }
@@ -2928,7 +2929,7 @@ blockquote {
 .oswald-no-vis-geschmacks {
   color: var(--main-black);
   text-transform: uppercase;
-  font-family: Oswald, sans-serif;
+  font-family: Oswald Bold, sans-serif;
   font-size: 32px;
   font-weight: 700;
   line-height: 40px;
@@ -3083,7 +3084,7 @@ blockquote {
 .pagination-link-previous {
   color: #141414;
   min-height: 0;
-  font-family: Source Sans Pro;
+  font-family: Source Sans Pro Regular, sans-serif;
   font-size: 18px;
   line-height: 26px;
   overflow: visible;
