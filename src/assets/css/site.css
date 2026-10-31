@@ -408,14 +408,7 @@ button, [type="button"] {
   background-color: #fff;
 }
 
-.w-slider-dot:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px #fff;
-}
 
-.w-slider-dot:focus.w-active {
-  box-shadow: none;
-}
 
 .w-slider-arrow-left, .w-slider-arrow-right {
   cursor: pointer;
@@ -436,9 +429,6 @@ button, [type="button"] {
   position: absolute;
 }
 
-.w-slider-arrow-left:focus, .w-slider-arrow-right:focus {
-  outline: 0;
-}
 
 .w-slider-arrow-left {
   z-index: 3;
@@ -837,9 +827,6 @@ button, [type="button"] {
   position: relative;
 }
 
-.w-nav-button:focus {
-  outline: 0;
-}
 
 .w-nav-button.w--open {
   color: #fff;
@@ -3818,4 +3805,27 @@ dialog::backdrop {
 
 .w-lightbox-view {
   transition: opacity 300ms;
+}
+
+/* ---- Barrierefreiheit (Q7) ---- */
+
+/* Sichtbarer Tastatur-Fokus: 2 px Magenta mit Abstand; auf dunklen Flächen weiß.
+   Mausnutzer sehen nichts Neues (:focus-visible). */
+:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 3px;
+}
+
+.footer :focus-visible,
+.w-lightbox-backdrop :focus-visible,
+.w-slider :focus-visible,
+.home-stage :focus-visible,
+.news-stage :focus-visible {
+  outline-color: var(--white);
+}
+
+/* Links im Fließtext nicht nur über die Farbe erkennbar (Beiträge, Datenschutz) */
+.richtext a,
+.datenschutz-absatz a {
+  text-decoration: underline;
 }
