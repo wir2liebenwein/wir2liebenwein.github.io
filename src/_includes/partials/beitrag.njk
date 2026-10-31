@@ -8,24 +8,24 @@
 <h2 class="post-title t-section">{{ d.titel }}</h2>
 
 {%- if d.darstellung == "slider" %}
-<div class="blog-slider w-slider" data-animation="slide" data-autoplay="false" data-autoplay-limit="0" data-delay="4000" data-disable-swipe="false" data-duration="500" data-easing="ease" data-hide-arrows="false" data-infinite="true" data-nav-spacing="3">
+<div class="blog-slider w-slider" role="region" aria-roledescription="Bildergalerie" aria-label="{{ d.titel }}">
   <div class="mask w-slider-mask">
-    {%- for bild in d.bilder %}
+    {%- for bild in d.bilder -%}
     <div class="w-slide"><img alt="{{ d.titel }}" sizes="100vw" src="{{ b | bildUrl(bild) }}"{% if not loop.first %} loading="lazy"{% endif %}/></div>
-    {%- endfor %}
+    {%- endfor -%}
   </div>
-  <div class="w-slider-arrow-left"><div class="w-icon-slider-left"></div></div>
-  <div class="w-slider-arrow-right"><div class="w-icon-slider-right"></div></div>
+  <button type="button" class="w-slider-arrow-left" aria-label="Vorheriges Bild"><span class="w-icon-slider-left" aria-hidden="true"></span></button>
+  <button type="button" class="w-slider-arrow-right" aria-label="Nächstes Bild"><span class="w-icon-slider-right" aria-hidden="true"></span></button>
   <div class="w-slider-nav w-round"></div>
 </div>
 
 {%- elif d.bilder and d.bilder.length %}
-<a class="blog-einzelbild inline-block w-lightbox" href="#"><img alt="{{ d.titel }}" loading="lazy" sizes="(max-width: 479px) 96vw, (max-width: 767px) 93vw, (max-width: 991px) 92vw, 800px" src="{{ b | bildUrl(d.bilder[0]) }}"/><script class="w-json" type="application/json">{"items":[{"url":"{{ b | bildUrl(d.bilder[0]) }}","type":"image"}],"group":"{{ gruppe }}"}</script></a>
+<a class="blog-einzelbild inline-block" href="{{ b | bildUrl(d.bilder[0]) }}" data-lightbox="{{ gruppe }}"><img alt="{{ d.titel }}" loading="lazy" sizes="(max-width: 479px) 96vw, (max-width: 767px) 93vw, (max-width: 991px) 92vw, 800px" src="{{ b | bildUrl(d.bilder[0]) }}"/></a>
 {%- if d.darstellung == "lightbox" %}
 {#- auch bei nur 1 Bild vorhanden: die (leere) Leiste sorgt wie in Webflow für 20px Abstand #}
 <div class="blog-lightbox">
   {%- for bild in d.bilder.slice(1, 4) %}
-  <a class="lightbox-link inline-block w-lightbox" href="#"><img alt="{{ d.titel }}"{% if loop.first %} class="first-image-lightbox"{% endif %} loading="lazy" sizes="100vw" src="{{ b | bildUrl(bild) }}"/><script class="w-json" type="application/json">{"items":[{"url":"{{ b | bildUrl(bild) }}","type":"image"}],"group":"{{ gruppe }}"}</script></a>
+  <a class="lightbox-link inline-block" href="{{ b | bildUrl(bild) }}" data-lightbox="{{ gruppe }}"><img alt="{{ d.titel }}"{% if loop.first %} class="first-image-lightbox"{% endif %} loading="lazy" sizes="100vw" src="{{ b | bildUrl(bild) }}"/></a>
   {%- endfor %}
 </div>
 {%- endif %}

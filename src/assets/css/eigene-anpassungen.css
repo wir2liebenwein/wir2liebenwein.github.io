@@ -87,3 +87,125 @@
 .datenschutz-text {
   margin-bottom: 10px;
 }
+
+/* ---- Interaktionen (site.js, ersetzt Webflow) ---- */
+
+/* Buttons und Dialoge ohne Browser-Optik; Spezifität 0, damit jede Komponenten-Klasse gewinnt. */
+:where(button) {
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+:where(dialog) {
+  width: auto;
+  height: auto;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  background: none;
+}
+
+dialog::backdrop {
+  background: transparent;
+}
+
+/* 1 Burger-Menü: Symbol als Block wie vorher das div; Auf-/Zuklappen 400 ms ease.
+   clip-path schneidet wie Webflows Overlay alles oberhalb der Leiste ab. */
+.nav-toggle > .burger-icon {
+  display: block;
+}
+
+@keyframes menue-auf {
+  from { transform: translateY(-100%); clip-path: inset(100% 0 0 0); }
+  to { transform: none; clip-path: inset(0); }
+}
+
+.nav-menu.is-opening {
+  animation: menue-auf 400ms ease;
+}
+
+.nav-menu.is-closing {
+  animation: menue-auf 400ms ease reverse forwards;
+}
+
+/* 2 Navigation verschwindet beim Runterscrollen (400 ms outQuad), kommt beim Hochscrollen (inQuad). */
+.navigation-max-width {
+  transition: transform 400ms cubic-bezier(.55, .085, .68, .53);
+}
+
+.navigation-max-width.is-hidden {
+  transform: translateY(-72px);
+  transition-timing-function: cubic-bezier(.25, .46, .45, .94);
+}
+
+/* 3 Vorschaubilder wachsen beim Darüberfahren auf 101 % (200 ms rein, 100 ms raus). */
+.post-thumb-image {
+  transition: transform 100ms ease-in;
+}
+
+.post-thumb-image:hover {
+  transform: translate3d(0, 0, 0) scale3d(1.01, 1.01, 1);
+  transform-style: preserve-3d;
+  transition: transform 200ms ease-out;
+}
+
+/* 4 Parallax: eigene Ebene wie bei Webflow (sonst rendert das Foto minimal anders) */
+@media screen and (min-width: 992px) {
+  .wrapper-image-divider {
+    will-change: transform;
+    transform-style: preserve-3d;
+  }
+}
+
+/* 5 Künstler-Dialog: 65 px von oben, Deckkraft 500 ms / Bewegung 200 ms; zu in 400 ms. */
+.modal-window[open] {
+  display: block;
+}
+
+.modal-window {
+  opacity: 0;
+  transform: translate3d(0, -65px, 0);
+  transform-style: preserve-3d;
+  transition: opacity 400ms ease, transform 400ms ease;
+}
+
+.modal-window.is-open {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 500ms ease, transform 200ms ease;
+}
+
+/* 6 Slider: Punkte sind jetzt Buttons (Webflows Rundung galt nur für div) */
+.w-slider-nav.w-round > button {
+  border-radius: 100%;
+}
+
+/* Ein leerer Button sitzt 1 px tiefer auf der Grundlinie als das frühere leere div. */
+.w-slider-nav > button {
+  vertical-align: 1px;
+}
+
+/* 7 Lightbox */
+.w-lightbox-backdrop[open] {
+  display: block;
+}
+
+.w-lightbox-backdrop {
+  transition: opacity 300ms;
+}
+
+.w-lightbox-view {
+  transition: opacity 300ms;
+}

@@ -24,7 +24,8 @@ ALL_IMAGES_LOADED = '[...document.images].every(i => i.complete)'
 
 # Changes while something is still moving: page height, scroll-driven inline transforms.
 MOTION_SIGNATURE = """[document.documentElement.scrollHeight,
-  ...[...document.querySelectorAll('[style*="transform"]')].map(e => e.style.transform)].join('|')"""
+  ...[...document.querySelectorAll('[style*="transform"], header, .navigation-max-width, .wrapper-image-divider')]
+     .map(e => getComputedStyle(e).transform + getComputedStyle(e).opacity)].join('|')"""
 
 
 async def wait_still(pg, poll=250, max_ms=5000):

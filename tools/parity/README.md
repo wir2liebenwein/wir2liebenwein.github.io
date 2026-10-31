@@ -11,6 +11,7 @@ Needs Python 3 with `playwright`, `pillow`, `numpy` and a Chrome at `/usr/bin/go
 | `shots.py <site> <out> [filter …]` | full-page PNG of every page at 1440 / 768 / 390 px, motion reduced |
 | `states.py <site> <out>` | viewport PNGs of the interactive states with motion on: burger menu, nav on scroll, thumbnail hover, parallax, artist modal, slider, lightbox |
 | `diff.py <a> <b> <diffs>` | lists every changed shot and writes a diff image (changed pixels in red) |
+| `behaviour.py <site>` | functional checks of site.js: skip link, burger menu (keyboard, Esc), nav on scroll, artist dialog (focus, Esc), slider wrap-around, lightbox group (arrows, Esc) |
 | `check.sh` | build + `shots.py` + `states.py` + `diff.py` against `../parity/baseline` |
 
 Both shooters serve the site themselves (`serve.py`, which mimics GitHub Pages) and
