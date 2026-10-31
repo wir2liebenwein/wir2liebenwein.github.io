@@ -55,6 +55,10 @@ function pruefeBeitrag(item) {
 export default function (eleventyConfig) {
   eleventyConfig.setLibrary("md", md);
   eleventyConfig.addFilter("markdown", (s) => md.render(String(s || "")));
+  // Zusatzlink: leere Absätze (&nbsp;) am Ende weglassen. Sonst hängt der pinke Pfeil,
+  // der hinter dem letzten Absatz steht, neben einer unsichtbaren Leerzeile.
+  eleventyConfig.addFilter("ohneLeereAbsaetzeAmEnde", (html) =>
+    String(html).replace(/(\s*<p>[\s ]*<\/p>)+\s*$/, "\n"));
 
   // Dateien, die 1:1 kopiert werden
   eleventyConfig.addPassthroughCopy("src/assets");
