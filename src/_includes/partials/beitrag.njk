@@ -34,7 +34,7 @@
 <div class="rich-text-block richtext">{{ b.content | safe }}</div>
 <div class="text-arrow-combo">
   {%- if d.zusatzlink %}
-  <div class="link richtext">{{ d.zusatzlink | markdown | safe }}</div><img alt="" class="arrow-back" src="/assets/images/internal-link-arrow.svg"/>
+  <div class="link richtext">{{ d.zusatzlink | markdown | ohneLeereAbsaetzeAmEnde | safe }}</div><img alt="" class="arrow-back" src="/assets/images/internal-link-arrow.svg"/>
   {%- endif %}
   <div class="spacer-div-25px"></div>
 </div>
