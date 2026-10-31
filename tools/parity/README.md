@@ -8,7 +8,7 @@ Needs Python 3 with `playwright`, `pillow`, `numpy` and a Chrome at `/usr/bin/go
 
 | Script | Does |
 |---|---|
-| `shots.py <site> <out> [filter …]` | full-page PNG of every page at 1440 / 768 / 390 px, motion reduced |
+| `shots.py <site> <out> [filter …]` | full-page PNG of every page at 1440 / 768 / 600 / 390 px (`PARITY_WIDTHS` to change), motion reduced |
 | `states.py <site> <out>` | viewport PNGs of the interactive states with motion on: burger menu, nav on scroll, thumbnail hover, parallax, artist modal, slider, lightbox |
 | `diff.py <a> <b> <diffs>` | lists every changed shot and writes a diff image (changed pixels in red) |
 | `behaviour.py <site>` | functional checks of site.js: skip link, burger menu (keyboard, Esc), nav on scroll, artist dialog (focus, Esc), slider wrap-around, lightbox group (arrows, Esc) |

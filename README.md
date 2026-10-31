@@ -2,7 +2,7 @@
 
 Website of **Wir2LiebenWein**, natural wine shop & bar in Munich-Westend.
 Static site built with [Eleventy](https://www.11ty.dev/), migrated from Webflow in October 2026
-(pixel-identical; original Webflow CSS/JS reused).
+and rebuilt as semantic, accessible HTML/CSS/JS in autumn 2026 (same look, no Webflow code).
 
 * **Editing content (posts, Weinliste)** → [`AGENTS.md`](AGENTS.md) (German, written for AI agents
   that act as the "CMS" for the shop owners)
