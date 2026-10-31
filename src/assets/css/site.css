@@ -964,6 +964,14 @@ button, [type="button"] {
 
 :root {
   --link-color: magenta;
+  --orange: #ff9b00;
+  --footer-bg: #383838;
+  --chapter-grey: #f3f3f3;
+  --rosa: #fff0ff;
+  --rosa-hell: #fff5ff;
+  --white-50: #ffffff80;
+  --line-grey: #efefef;
+  --footnote-grey: #b3b3b3;
   --main-black: #141414;
   --white: white;
   --dim-grey: #676767;
@@ -1164,7 +1172,7 @@ a:hover {
 }
 
 .h1.transparenz {
-  color: #ffffff80;
+  color: var(--white-50);
 }
 
 .h1.home-stage-h1-padding {
@@ -1182,7 +1190,7 @@ a:hover {
 
 .h4.black {
   clear: none;
-  color: #141414;
+  color: var(--main-black);
   margin-top: auto;
   margin-bottom: auto;
   font-family: Libre Baskerville Regular, sans-serif;
@@ -1203,11 +1211,11 @@ a:hover {
 }
 
 .nav-link:hover {
-  color: #f0f;
+  color: var(--link-color);
 }
 
 .nav-link:active {
-  color: #f0f;
+  color: var(--link-color);
   font-weight: 400;
 }
 
@@ -1227,7 +1235,7 @@ a:hover {
 }
 
 .black-module-line {
-  background-color: #141414;
+  background-color: var(--main-black);
   height: 1px;
   margin-top: 20px;
 }
@@ -1240,7 +1248,7 @@ a:hover {
 }
 
 .bg-chapter-font {
-  color: #f3f3f3;
+  color: var(--chapter-grey);
   text-transform: uppercase;
   margin-top: 0;
   margin-bottom: -60px;
@@ -1389,7 +1397,7 @@ a:hover {
 }
 
 .post-tag {
-  color: #ff9b00;
+  color: var(--orange);
   letter-spacing: .3px;
   text-transform: uppercase;
   margin-top: 0;
@@ -1419,7 +1427,7 @@ a:hover {
 }
 
 .link.otherpadding {
-  background-color: #fff5ff;
+  background-color: var(--rosa-hell);
   border-radius: 10px;
   flex: none;
   margin: 5px;
@@ -1504,7 +1512,7 @@ a:hover {
 }
 
 .footer {
-  background-color: #383838;
+  background-color: var(--footer-bg);
   margin-top: 100px;
   padding-top: 20px;
   padding-bottom: 2px;
@@ -1723,7 +1731,7 @@ a:hover {
 .navigation-max-width {
   z-index: 9998;
   background-color: var(--white);
-  border-bottom: 1px solid #efefef;
+  border-bottom: 1px solid var(--line-grey);
   width: auto;
   max-width: 100%;
   height: 71px;
@@ -1838,7 +1846,7 @@ a:hover {
 }
 
 .pagination-link-previous {
-  color: #141414;
+  color: var(--main-black);
   min-height: 0;
   font-family: Source Sans Pro Regular, sans-serif;
   font-size: 18px;
@@ -1879,7 +1887,7 @@ a:hover {
 }
 
 .paragraph.hellgrau {
-  color: #b3b3b3;
+  color: var(--footnote-grey);
   margin-bottom: 40px;
   padding-right: 0;
   font-size: 14px;
@@ -1887,7 +1895,7 @@ a:hover {
 }
 
 .unterzeile-winzer {
-  color: #141414;
+  color: var(--main-black);
   min-height: 0;
   padding-top: 20px;
   font-family: Source Sans Pro Regular, sans-serif;
@@ -1933,7 +1941,7 @@ a:hover {
 
 .pull-quote {
   border: 1px solid #0000;
-  border-left: 1px #f0f;
+  border-left: 1px var(--link-color);
   padding-left: 0;
   padding-right: 0;
   font-family: Libre Baskerville Regular, sans-serif;
@@ -1977,7 +1985,7 @@ a:hover {
 
 .modal-window {
   z-index: 9999;
-  background-color: #fff0ff;
+  background-color: var(--rosa);
   flex-flow: column;
   place-content: center;
   align-items: center;
@@ -2192,7 +2200,7 @@ a:hover {
 
 ._404-serif {
   border: 1px solid #0000;
-  border-left: 1px #f0f;
+  border-left: 1px var(--link-color);
   padding-left: 0;
   padding-right: 0;
 }
@@ -2390,11 +2398,11 @@ a:hover {
 }
 
 .nav-link-verkostung:hover {
-  color: #f0f;
+  color: var(--link-color);
 }
 
 .nav-link-verkostung:active {
-  color: #f0f;
+  color: var(--link-color);
   font-weight: 400;
 }
 
@@ -2513,7 +2521,7 @@ a:hover {
   }
 
   .link.otherpadding {
-    background-color: #fff5ff;
+    background-color: var(--rosa-hell);
     border-radius: 10px;
     padding: 20px;
   }
