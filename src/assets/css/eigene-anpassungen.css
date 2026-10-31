@@ -82,3 +82,8 @@
   white-space: nowrap;
   border: 0;
 }
+
+/* Datenschutz-Text: früher ein einziges <p> (Abstand unten wie p). */
+.datenschutz-text {
+  margin-bottom: 10px;
+}

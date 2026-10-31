@@ -45,8 +45,16 @@ b, strong {
 dfn {
   font-style: italic;
 }
+/* Überschriften sind neutral: das Aussehen kommt aus den .t-*-Klassen (Typo-Rollen).
+   Nur im Beitragstext (.w-richtext) gelten weiter die Element-Stile. */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
 
-h1 {
+
+.t-display, .t-hero, .t-page, :where(.w-richtext) h1 {
   margin: .67em 0;
   font-size: 2em;
 }
@@ -459,42 +467,42 @@ pre.w-code-block code > span {
   display: inline-block !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
+.t-display, .t-hero, .t-page, :where(.w-richtext) h1, .t-section, :where(.w-richtext) h2, .t-subtitle, :where(.w-richtext) h3, .t-wine, :where(.w-richtext) h4, :where(.w-richtext) h5, :where(.w-richtext) h6 {
   margin-bottom: 10px;
   font-weight: bold;
 }
 
-h1 {
+.t-display, .t-hero, .t-page, :where(.w-richtext) h1 {
   margin-top: 20px;
   font-size: 38px;
   line-height: 44px;
 }
 
-h2 {
+.t-section, :where(.w-richtext) h2 {
   margin-top: 20px;
   font-size: 32px;
   line-height: 36px;
 }
 
-h3 {
+.t-subtitle, :where(.w-richtext) h3 {
   margin-top: 20px;
   font-size: 24px;
   line-height: 30px;
 }
 
-h4 {
+.t-wine, :where(.w-richtext) h4 {
   margin-top: 10px;
   font-size: 18px;
   line-height: 24px;
 }
 
-h5 {
+:where(.w-richtext) h5 {
   margin-top: 10px;
   font-size: 14px;
   line-height: 20px;
 }
 
-h6 {
+:where(.w-richtext) h6 {
   margin-top: 10px;
   font-size: 12px;
   line-height: 18px;
@@ -505,12 +513,23 @@ p {
   margin-bottom: 10px;
 }
 
-blockquote {
+.t-quote, :where(.w-richtext) blockquote {
   border-left: 5px solid #e2e2e2;
   margin: 0 0 10px;
   padding: 10px 20px;
   font-size: 18px;
   line-height: 22px;
+}
+
+/* Texte, die früher div waren und jetzt p sind, behalten die Abstände eines div. */
+.t-kicker, .t-byline, .t-lead, .datenschutz-absatz {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Datenschutz: die nummerierten Abschnittstitel (früher fett im Fließtext) */
+.datenschutz-titel {
+  font-weight: 700;
 }
 
 figure {
@@ -2213,6 +2232,31 @@ textarea.w-input, textarea.w-select {
   --main-black: #141414;
   --white: white;
   --dim-grey: #676767;
+  /* Schriftgrößen / Zeilenhöhen der Typo-Rollen (.t-*), je Breakpoint unten neu gesetzt */
+  --fs-display: 192px;
+  --lh-display: 192px;
+  --fs-hero: 84px;
+  --lh-hero: 96px;
+  --fs-page: 80px;
+  --lh-page: 90px;
+  --fs-section: 50px;
+  --lh-section: 58px;
+  --fs-title: 32px;
+  --lh-title: 40px;
+  --fs-subtitle: 24px;
+  --lh-subtitle: 30px;
+  --fs-lead: 30px;
+  --lh-lead: 44px;
+  --fs-quote: 30px;
+  --lh-quote: 44px;
+  --fs-body: 18px;
+  --lh-body: 26px;
+  --fs-serif: 16px;
+  --lh-serif: 28px;
+  --fs-small: 15px;
+  --lh-small: 23px;
+  --section-margin-top: -5px;
+  --subtitle-margin-bottom: 10px;
 }
 
 .w-pagination-wrapper {
@@ -2271,37 +2315,37 @@ body {
   line-height: 26px;
 }
 
-h1 {
+.t-display, .t-hero, .t-page, :where(.w-richtext) h1 {
   text-transform: uppercase;
   margin-top: 0;
   margin-bottom: 0;
   font-family: Oswald Bold, sans-serif;
-  font-size: 80px;
+  font-size: var(--fs-page);
   font-weight: 700;
-  line-height: 90px;
+  line-height: var(--lh-page);
 }
 
-h2 {
+.t-section, :where(.w-richtext) h2 {
   text-transform: uppercase;
-  margin-top: -5px;
+  margin-top: var(--section-margin-top);
   margin-bottom: 0;
   font-family: Oswald Bold, sans-serif;
-  font-size: 50px;
+  font-size: var(--fs-section);
   font-weight: 700;
-  line-height: 58px;
+  line-height: var(--lh-section);
 }
 
-h3 {
+.t-subtitle, :where(.w-richtext) h3 {
   text-transform: uppercase;
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: var(--subtitle-margin-bottom);
   font-family: Oswald Bold, sans-serif;
-  font-size: 24px;
+  font-size: var(--fs-subtitle);
   font-weight: 700;
-  line-height: 30px;
+  line-height: var(--lh-subtitle);
 }
 
-h4 {
+.t-wine, :where(.w-richtext) h4 {
   margin-top: 0;
   margin-bottom: 0;
   font-family: Source Sans Pro Bold, sans-serif;
@@ -2310,7 +2354,7 @@ h4 {
   line-height: 24px;
 }
 
-h6 {
+:where(.w-richtext) h6 {
   text-transform: uppercase;
   border-bottom: 1px #000;
   margin-top: 10px;
@@ -2335,13 +2379,13 @@ a:hover {
   color: var(--link-color);
 }
 
-blockquote {
+.t-quote, :where(.w-richtext) blockquote {
   border-left: 5px solid #e2e2e2;
   margin-bottom: 10px;
   padding: 10px 20px;
   font-family: Libre Baskerville Regular, sans-serif;
-  font-size: 30px;
-  line-height: 44px;
+  font-size: var(--fs-quote);
+  line-height: var(--lh-quote);
 }
 
 .brand {
@@ -2378,16 +2422,14 @@ blockquote {
   color: #fff;
   text-transform: uppercase;
   font-family: Oswald Bold, sans-serif;
-  font-size: 84px;
+  font-size: var(--fs-hero);
   font-weight: 700;
-  line-height: 96px;
+  line-height: var(--lh-hero);
   display: inline-block;
 }
 
 .h1.transparenz {
   color: #ffffff80;
-  font-size: 84px;
-  line-height: 96px;
 }
 
 .h1.home-stage-h1-padding {
@@ -2396,8 +2438,6 @@ blockquote {
 
 .h1.transparenz-weinpakete {
   color: #fff;
-  font-size: 84px;
-  line-height: 96px;
 }
 
 .h4 {
@@ -2416,6 +2456,8 @@ blockquote {
   margin-bottom: auto;
   font-family: Libre Baskerville Regular, sans-serif;
   display: block;
+  font-size: var(--fs-lead);
+  line-height: var(--lh-lead);
 }
 
 .nav-link {
@@ -2423,8 +2465,8 @@ blockquote {
   border-bottom: 0 #0000;
   padding: 24px 10px;
   font-family: Source Sans Pro Regular, sans-serif;
-  font-size: 15px;
-  line-height: 23px;
+  font-size: var(--fs-small);
+  line-height: var(--lh-small);
   text-decoration: none;
   display: inline-block;
 }
@@ -2485,8 +2527,8 @@ blockquote {
   margin-bottom: -60px;
   margin-left: -45px;
   font-family: Oswald Bold, sans-serif;
-  font-size: 192px;
-  line-height: 192px;
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
   display: block;
   overflow: hidden;
 }
@@ -2639,8 +2681,8 @@ blockquote {
   margin-top: 0;
   padding-bottom: 5px;
   font-family: Source Sans Pro Regular, sans-serif;
-  font-size: 18px;
-  line-height: 26px;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
   text-decoration: none;
 }
 
@@ -2713,9 +2755,9 @@ blockquote {
   margin-top: 0;
   margin-bottom: 0;
   font-family: Oswald Bold, sans-serif;
-  font-size: 32px;
+  font-size: var(--fs-title);
   font-weight: 700;
-  line-height: 40px;
+  line-height: var(--lh-title);
   text-decoration: none;
 }
 
@@ -2732,9 +2774,9 @@ blockquote {
   margin-top: 0;
   margin-bottom: 20px;
   font-family: Oswald, sans-serif;
-  font-size: 32px;
+  font-size: var(--fs-title);
   font-weight: 700;
-  line-height: 40px;
+  line-height: var(--lh-title);
 }
 
 .h3.white {
@@ -2947,9 +2989,9 @@ blockquote {
   color: var(--main-black);
   text-transform: uppercase;
   font-family: Oswald Bold, sans-serif;
-  font-size: 32px;
+  font-size: var(--fs-title);
   font-weight: 700;
-  line-height: 40px;
+  line-height: var(--lh-title);
   text-decoration: none;
 }
 
@@ -2966,9 +3008,9 @@ blockquote {
   color: var(--main-black);
   text-transform: uppercase;
   font-family: Oswald Bold, sans-serif;
-  font-size: 32px;
+  font-size: var(--fs-title);
   font-weight: 700;
-  line-height: 40px;
+  line-height: var(--lh-title);
   text-decoration: none;
   display: none;
 }
@@ -3154,8 +3196,8 @@ blockquote {
 .paragraph {
   margin-top: 20px;
   font-family: Libre Baskerville Regular, sans-serif;
-  font-size: 16px;
-  line-height: 28px;
+  font-size: var(--fs-serif);
+  line-height: var(--lh-serif);
 }
 
 .paragraph.hellgrau {
@@ -3176,8 +3218,8 @@ blockquote {
   min-height: 0;
   padding-top: 20px;
   font-family: Source Sans Pro Regular, sans-serif;
-  font-size: 18px;
-  line-height: 26px;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
   overflow: visible;
 }
 
@@ -3938,8 +3980,8 @@ blockquote {
   border-bottom: 0 #0000;
   padding: 24px 10px;
   font-family: Source Sans Pro Regular, sans-serif;
-  font-size: 15px;
-  line-height: 23px;
+  font-size: var(--fs-small);
+  line-height: var(--lh-small);
   display: none;
 }
 
@@ -3969,9 +4011,15 @@ html.w-mod-js [data-ix="modal-interaction"] {
 }
 
 @media screen and (max-width: 991px) {
-  h2 {
-    margin-top: 0;
-  }
+  :root {
+    --fs-hero: 62px;
+    --lh-hero: 74px;
+    --fs-lead: 24px;
+    --lh-lead: 34px;
+    --fs-small: 18px;
+    --section-margin-top: 0px;
+}
+
 
   .navbar {
     padding-left: 30px;
@@ -3985,39 +4033,23 @@ html.w-mod-js [data-ix="modal-interaction"] {
     display: block;
   }
 
-  .h1, .h1.transparenz {
-    font-size: 62px;
-    line-height: 74px;
-  }
-
   .h1.home-stage-h1-padding {
     margin-top: 0;
   }
 
-  .h1.transparenz-weinpakete {
-    font-size: 62px;
-    line-height: 74px;
-  }
-
-  .h4.black {
-    font-size: 24px;
-    line-height: 34px;
-  }
-
   .nav-link {
-    text-align: center;
-    flex-flow: row;
-    flex: none;
-    order: 0;
-    align-self: auto;
-    align-items: flex-start;
-    margin-left: 0;
-    margin-right: 0;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    font-size: 18px;
-    display: block;
-  }
+  text-align: center;
+  flex-flow: row;
+  flex: none;
+  order: 0;
+  align-self: auto;
+  align-items: flex-start;
+  margin-left: 0;
+  margin-right: 0;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  display: block;
+}
 
   .div-block-2 {
     float: none;
@@ -4454,31 +4486,33 @@ html.w-mod-js [data-ix="modal-interaction"] {
   }
 
   .nav-link-verkostung {
-    text-align: center;
-    flex-flow: row;
-    flex: none;
-    order: 0;
-    align-self: auto;
-    align-items: flex-start;
-    margin-left: 0;
-    margin-right: 0;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    font-size: 18px;
-    display: block;
-  }
+  text-align: center;
+  flex-flow: row;
+  flex: none;
+  order: 0;
+  align-self: auto;
+  align-items: flex-start;
+  margin-left: 0;
+  margin-right: 0;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  display: block;
+}
 }
 
 @media screen and (max-width: 767px) {
-  h1 {
-    font-size: 70px;
-    line-height: 78px;
-  }
+  :root {
+    --fs-display: 152px;
+    --fs-hero: 54px;
+    --lh-hero: 62px;
+    --fs-page: 70px;
+    --lh-page: 78px;
+    --fs-lead: 22px;
+    --lh-lead: 30px;
+    --fs-quote: 28px;
+    --lh-quote: 38px;
+}
 
-  h2 {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
 
   .brand {
     width: 220px;
@@ -4490,18 +4524,8 @@ html.w-mod-js [data-ix="modal-interaction"] {
     padding-left: 0;
   }
 
-  .h1, .h1.transparenz {
-    font-size: 54px;
-    line-height: 62px;
-  }
-
   .h1.home-stage-h1-padding {
     padding-top: 10px;
-  }
-
-  .h1.transparenz-weinpakete {
-    font-size: 54px;
-    line-height: 62px;
   }
 
   .h4 {
@@ -4510,18 +4534,12 @@ html.w-mod-js [data-ix="modal-interaction"] {
   }
 
   .h4.black {
-    padding-top: 35px;
-    font-size: 22px;
-    line-height: 30px;
-  }
+  padding-top: 35px;
+}
 
   .nav-link {
     padding-top: 15px;
     padding-bottom: 15px;
-  }
-
-  .bg-chapter-font {
-    font-size: 152px;
   }
 
   .bg-chapter-font.insta {
@@ -4730,10 +4748,8 @@ html.w-mod-js [data-ix="modal-interaction"] {
   }
 
   .block-quote {
-    padding-left: 30px;
-    font-size: 28px;
-    line-height: 38px;
-  }
+  padding-left: 30px;
+}
 
   .modal-window {
     padding-left: 25px;
@@ -4813,10 +4829,8 @@ html.w-mod-js [data-ix="modal-interaction"] {
   }
 
   ._404-serif {
-    padding-left: 0;
-    font-size: 28px;
-    line-height: 38px;
-  }
+  padding-left: 0;
+}
 
   .link-block-6 {
     text-align: center;
@@ -4873,19 +4887,22 @@ html.w-mod-js [data-ix="modal-interaction"] {
 }
 
 @media screen and (max-width: 479px) {
-  h1 {
-    font-size: 44px;
-    line-height: 50px;
-  }
+  :root {
+    --fs-display: 80px;
+    --fs-hero: 50px;
+    --lh-hero: 56px;
+    --fs-page: 44px;
+    --lh-page: 50px;
+    --fs-section: 36px;
+    --lh-section: 40px;
+    --fs-lead: 20px;
+    --lh-lead: 30px;
+    --fs-quote: 26px;
+    --lh-quote: 36px;
+    --lh-serif: 26px;
+    --subtitle-margin-bottom: 9px;
+}
 
-  h2 {
-    font-size: 36px;
-    line-height: 40px;
-  }
-
-  h3 {
-    margin-bottom: 9px;
-  }
 
   .brand {
     width: 200px;
@@ -4901,19 +4918,9 @@ html.w-mod-js [data-ix="modal-interaction"] {
     padding-left: 0;
   }
 
-  .h1, .h1.transparenz {
-    font-size: 50px;
-    line-height: 56px;
-  }
-
   .h1.home-stage-h1-padding {
     margin-top: 0;
     padding-top: 0;
-  }
-
-  .h1.transparenz-weinpakete {
-    font-size: 50px;
-    line-height: 56px;
   }
 
   .h4 {
@@ -4922,10 +4929,8 @@ html.w-mod-js [data-ix="modal-interaction"] {
   }
 
   .h4.black {
-    padding-top: 29px;
-    font-size: 20px;
-    line-height: 30px;
-  }
+  padding-top: 29px;
+}
 
   .nav-link {
     padding-top: 20px;
@@ -4945,11 +4950,10 @@ html.w-mod-js [data-ix="modal-interaction"] {
   }
 
   .bg-chapter-font {
-    margin-bottom: -78px;
-    margin-left: -5px;
-    padding-bottom: 0;
-    font-size: 80px;
-  }
+  margin-bottom: -78px;
+  margin-left: -5px;
+  padding-bottom: 0;
+}
 
   .bg-chapter-font.insta {
     margin-bottom: -90px;
@@ -5014,11 +5018,6 @@ html.w-mod-js [data-ix="modal-interaction"] {
 
   .wrapper-image-divider {
     height: 350px;
-  }
-
-  .post-tag {
-    font-size: 18px;
-    line-height: 26px;
   }
 
   .oswald-link-hover {
@@ -5187,21 +5186,15 @@ html.w-mod-js [data-ix="modal-interaction"] {
     padding-top: 60px;
   }
 
-  .paragraph {
-    line-height: 26px;
-  }
-
   .unterzeile-winzer {
     overflow: visible;
   }
 
   .block-quote {
-    letter-spacing: normal;
-    margin-bottom: 0;
-    padding-left: 15px;
-    font-size: 26px;
-    line-height: 36px;
-  }
+  letter-spacing: normal;
+  margin-bottom: 0;
+  padding-left: 15px;
+}
 
   .modal-window {
     padding: 20px 15px;
@@ -5326,12 +5319,10 @@ html.w-mod-js [data-ix="modal-interaction"] {
   }
 
   ._404-serif {
-    letter-spacing: normal;
-    margin-bottom: 0;
-    padding-left: 0;
-    font-size: 26px;
-    line-height: 36px;
-  }
+  letter-spacing: normal;
+  margin-bottom: 0;
+  padding-left: 0;
+}
 
   .link-block-6 {
     width: 170px;
