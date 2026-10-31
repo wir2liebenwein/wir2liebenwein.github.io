@@ -2235,7 +2235,7 @@ textarea.w-input, textarea.w-select {
   /* Schriftgrößen / Zeilenhöhen der Typo-Rollen (.t-*), je Breakpoint unten neu gesetzt */
   --fs-display: 192px;
   --lh-display: 192px;
-  --fs-hero: 84px;
+  --fs-hero: 80px;
   --lh-hero: 96px;
   --fs-page: 80px;
   --lh-page: 90px;
@@ -2245,15 +2245,15 @@ textarea.w-input, textarea.w-select {
   --lh-title: 40px;
   --fs-subtitle: 24px;
   --lh-subtitle: 30px;
-  --fs-lead: 30px;
+  --fs-lead: 32px;
   --lh-lead: 44px;
-  --fs-quote: 30px;
+  --fs-quote: 32px;
   --lh-quote: 44px;
   --fs-body: 18px;
   --lh-body: 26px;
   --fs-serif: 16px;
   --lh-serif: 28px;
-  --fs-small: 15px;
+  --fs-small: 16px;
   --lh-small: 23px;
   --section-margin-top: -5px;
   --subtitle-margin-bottom: 10px;
@@ -4016,7 +4016,7 @@ html.w-mod-js [data-ix="modal-interaction"] {
     --lh-hero: 74px;
     --fs-lead: 24px;
     --lh-lead: 34px;
-    --fs-small: 18px;
+    --fs-small: 16px;
     --section-margin-top: 0px;
 }
 
@@ -4509,7 +4509,7 @@ html.w-mod-js [data-ix="modal-interaction"] {
     --lh-page: 78px;
     --fs-lead: 22px;
     --lh-lead: 30px;
-    --fs-quote: 28px;
+    --fs-quote: 32px;
     --lh-quote: 38px;
 }
 
