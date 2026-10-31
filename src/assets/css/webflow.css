@@ -547,6 +547,19 @@ ul, ol {
   padding-left: 40px;
 }
 
+/* Listen ohne Listen-Optik (Menü, Beiträge, Kacheln): Abstände kommen aus den Komponenten. */
+.reset-list {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+/* Kachel-Raster (Winzer, Weinpakete): der Link füllt sein Listenelement wie vorher die Rasterzelle */
+.grid > li > a {
+  display: block;
+}
+
 .w-list-unstyled {
   padding-left: 0;
   list-style: none;
