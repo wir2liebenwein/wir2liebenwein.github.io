@@ -3843,3 +3843,15 @@ dialog::backdrop {
     will-change: auto;
   }
 }
+
+/* Bilder mit width/height (aus dem Build) behalten ihre Seitenverhältnisse; die Höhe
+   ergibt sich wie bisher aus der Breite. height="0" (Logo-Zeichen) bleibt unberührt. */
+:where(img[width][height]:not([height="0"])) {
+  height: auto;
+}
+
+/* Bilder mit srcset/sizes nehmen ihre Breite weiter aus sizes (z. B. UPA-Kopfbild 960 px),
+   nicht aus dem width-Attribut. */
+:where(img[sizes][width][height]:not([height="0"])) {
+  width: auto;
+}
