@@ -2172,6 +2172,42 @@ textarea.w-input, textarea.w-select {
   font-display: swap;
 }
 
+/* Kurznamen ohne Schnitt im Namen ("Oswald", "Source Sans Pro", "Libre Baskerville")
+   wurden in einigen Regeln (u. a. body, .h3, Künstler-Text im Modal) verwendet, aber nie
+   deklariert; dort griff die Systemschrift des Besuchers. Jetzt zeigen sie auf dieselben
+   Dateien (Entscheidung Q1, 30.10.2026). */
+@font-face {
+  font-family: Oswald;
+  src: url("../fonts/oswald-variablefont_wght.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Source Sans Pro;
+  src: url("../fonts/sourcesanspro-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Source Sans Pro;
+  src: url("../fonts/sourcesanspro-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Libre Baskerville;
+  src: url("../fonts/librebaskerville-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --link-color: magenta;
   --main-black: #141414;

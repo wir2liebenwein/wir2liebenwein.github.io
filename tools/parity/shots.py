@@ -5,7 +5,8 @@ import asyncio, glob, os, sys
 from playwright.async_api import async_playwright
 from serve import serve
 
-WIDTHS = (1440, 768, 390)
+# Override with PARITY_WIDTHS="1440,768,600,390" (600 px covers the 480–767 band).
+WIDTHS = tuple(int(w) for w in os.environ.get('PARITY_WIDTHS', '1440,768,600,390').split(','))
 CONCURRENCY = 4
 
 
