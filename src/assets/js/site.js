@@ -84,7 +84,7 @@
       if (current !== goal) raf = requestAnimationFrame(frame);
     }
     function update() {
-      if (!desktop.matches) {
+      if (!desktop.matches || reduce.matches) {   // Q8: keine Parallaxe bei reduzierter Bewegung
         cancelAnimationFrame(raf); raf = 0; current = goal = FROM; wrap.style.transform = ''; return;
       }
       var rect = photo.getBoundingClientRect(), vh = window.innerHeight;
@@ -95,6 +95,7 @@
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     desktop.addEventListener('change', update);
+    reduce.addEventListener('change', update);
     if (photo.complete) update(); else photo.addEventListener('load', update);
   })();
 

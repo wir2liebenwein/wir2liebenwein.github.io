@@ -3829,3 +3829,17 @@ dialog::backdrop {
 .datenschutz-absatz a {
   text-decoration: underline;
 }
+
+/* Q8: bei "Bewegung reduzieren" keine Navigations-Animation beim Scrollen, keine
+   Parallaxe (site.js) und Slider ohne Gleiten (site.js). */
+@media (prefers-reduced-motion: reduce) {
+  .navigation-max-width,
+  .navigation-max-width.is-hidden {
+    transform: none;
+    transition: none;
+  }
+
+  .wrapper-image-divider {
+    will-change: auto;
+  }
+}
