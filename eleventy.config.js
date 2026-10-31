@@ -3,6 +3,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import markdownIt from "markdown-it";
+import Image from "@11ty/eleventy-img";
+import sharp from "sharp";
 
 const DARSTELLUNGEN = ["einzelbild", "lightbox", "slider"];
 const BILD_ENDUNGEN = /\.(jpe?g|png|gif|webp)$/i;
@@ -88,6 +90,48 @@ export default function (eleventyConfig) {
         return `href="${wl.datei}${s ? "#page=" + s : ""}" data-weinliste-seite="${key}"`;
       }
     );
+  });
+
+  // Bilder: jedes <img> bekommt width/height (kein Springen beim Laden); Beitragsbilder
+  // zusätzlich verkleinerte WebP-Fassungen per srcset. Die Originale bleiben, wie sie sind.
+  const groessen = new Map();
+  async function bildMasse(datei) {
+    if (!groessen.has(datei)) {
+      groessen.set(datei, sharp(datei).metadata().then((m) =>
+        (m.orientation || 1) >= 5 ? { w: m.height, h: m.width } : { w: m.width, h: m.height }));
+    }
+    return groessen.get(datei);
+  }
+  eleventyConfig.addTransform("bilder", async function (content) {
+    if (!(this.page.outputPath || "").endsWith(".html")) return content;
+    const teile = [];
+    let rest = 0;
+    for (const m of content.matchAll(/<img\b[^>]*>/g)) {
+      let tag = m[0];
+      const src = (tag.match(/\ssrc="([^"]+)"/) || [])[1] || "";
+      const datei = path.join("src", decodeURIComponent(src));
+      if (src.startsWith("/") && /\.(jpe?g|png|gif|webp)$/i.test(src) && fs.existsSync(datei)) {
+        if (!/\swidth=/.test(tag) && !/\sheight=/.test(tag)) {
+          const { w, h } = await bildMasse(datei);
+          tag = tag.replace(/^<img/, `<img width="${w}" height="${h}"`);
+        }
+        if (src.startsWith("/posts/") && !/\ssrcset=/.test(tag)) {
+          const meta = await Image(datei, {
+            widths: [400, 800, 1200, 1600],
+            formats: ["webp"],
+            outputDir: path.join("_site", "bilder"),
+            urlPath: "/bilder/",
+            sharpWebpOptions: { quality: 82 },
+          });
+          const srcset = meta.webp.map((v) => `${v.url} ${v.width}w`).join(", ");
+          tag = tag.replace(/^<img/, `<img srcset="${srcset}"`);
+        }
+      }
+      teile.push(content.slice(rest, m.index), tag);
+      rest = m.index + m[0].length;
+    }
+    teile.push(content.slice(rest));
+    return teile.join("");
   });
 
   return {

@@ -26,9 +26,10 @@ beschrieben ist.
    * `src/_data/weinliste.json` – auf welche PDF-Seite die Winzer-Seiten springen
    * Öffnungszeiten in `src/seiten/sortiment.html`, `src/seiten/bottleshop.html`,
      `src/seiten/bestell-kontakt.html`
-2. **Nie anfassen:** `src/assets/css/webflow.css`, `src/assets/js/*`,
-   `src/_includes/**`, `eleventy.config.js`, `.github/**`. Und nie `data-w-id`- oder
-   `data-wf-*`-Attribute entfernen, sonst gehen Animationen kaputt.
+2. **Nie anfassen:** `src/assets/css/site.css`, `src/assets/js/site.js`,
+   `src/_includes/**`, `eleventy.config.js`, `tools/**`, `.github/**`. In den Seiten
+   unter `src/seiten/` keine Klassen, `id`s oder `data-…`-Attribute ändern: daran hängen
+   Aussehen, Menü, Slider, Lightbox und das Künstler-Fenster.
 3. **Vor jedem Online-Stellen `npm run build` ausführen.** Der Build prüft alle
    Beiträge. Bricht er mit „BEITRAG FEHLERHAFT“ ab, behebe den Fehler und stell erst
    danach online.
@@ -49,8 +50,9 @@ npm ci            # Node 22 oder neuer
 npm run build     # muss ohne Fehler durchlaufen
 ```
 
-Vor jeder Arbeit `git pull`, denn vielleicht hat jemand anderes inzwischen etwas
-geändert.
+Vor jeder Arbeit `git pull` und danach `npm ci`, denn vielleicht hat jemand anderes
+inzwischen etwas geändert (auch die Werkzeuge, die der Build braucht). Ohne `npm ci`
+bricht `npm run build` dann mit „Cannot find package …“ ab.
 
 ---
 
@@ -93,6 +95,8 @@ npm run neuer-beitrag -- \
 
 Das Werkzeug legt `src/posts/<datum>-<titel>/index.md` an, verkleinert die Bilder
 (max. 1600 px breit) und benennt sie web-tauglich um.
+Beim Bauen entstehen daraus automatisch kleinere WebP-Fassungen für Handys; darum
+musst du dich nicht kümmern.
 
 <details><summary>Von Hand (falls das Werkzeug nicht geht)</summary>
 

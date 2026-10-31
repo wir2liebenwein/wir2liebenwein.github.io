@@ -1,9 +1,0 @@
-/* Eigene CSS-Anpassungen. webflow.css bitte nicht direkt ändern –
-   Änderungen hier eintragen, sie überschreiben webflow.css. */
-
-/* Beitragsbilder immer auf volle Spaltenbreite – so hat Webflow sie über
-   srcset/sizes dargestellt (wichtig für Bilder schmaler als 800px). */
-.blog-einzelbild img,
-.blog-slider img {
-  width: 100%;
-}

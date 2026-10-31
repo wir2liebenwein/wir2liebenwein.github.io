@@ -1,16 +1,14 @@
 ---
 layout: base.njk
 title: Neues
-wf_page: 5d7f8f746e00fd879c9a1b99
-webflow_bundle: slider
 pagination:
   data: collections.beitraege
   size: 5
   alias: beitraege
 permalink: '{% if pagination.pageNumber == 0 %}/neues/{% else %}/neues/{{ pagination.pageNumber + 1 }}/{% endif %}'
 ---
-{% raw %}<div class="stage-max-width"><div class="news-stage"><div class="stage-headline-column-div w-row"><div class="column w-col w-col-9"><h1 class="h1 transparenz"><strong>Vielfalt im <br/>Trinken und <br/>Denken</strong></h1><div class="h4">Akademischisches Weintrinken ist wie entefahren mit angezogener Handbremse. Wir haben lieber Spaß.</div></div><div class="column-2 w-col w-col-3"><div class="div-block-8"></div></div></div></div></div>
+{% raw %}<div class="stage-max-width"><div class="news-stage"><div class="stage-headline-column-div row"><div class="stage-col-text col col-9"><h1 class="h1 transparenz t-hero"><strong>Vielfalt im <br/>Trinken und <br/>Denken</strong></h1></div><div class="stage-col-badge col col-3"><div class="stage-spacer"></div></div></div></div></div>
 {% endraw %}
 {% include "partials/neues-liste.njk" %}
 {% raw %}
-<div class="section-instagram"><div class="section-div"><h1 class="bg-chapter-font">INSTAGRAM</h1><h1 class="bg-chapter-font insta">Instagram</h1><a class="link-block---teaser-module w-inline-block" href="https://www.instagram.com/wir2liebenwein/" target="_blank"><img alt="" class="post-thumb-image" sizes="(max-width: 991px) 100vw, 960px" src="/assets/images/404_header.jpg" srcset="/assets/images/404_header-p-500.jpeg 500w, /assets/images/404_header-p-800.jpeg 800w, /assets/images/404_header-p-1080.jpeg 1080w, /assets/images/404_header-p-1600.jpeg 1600w, /assets/images/404_header.jpg 2000w"/><div class="oswald-no-hover">Auf Insta Gibt's noch mehr Spass mit Wein</div><div class="link">Mehr Erfahren</div><img alt="" class="arrow-back" src="/assets/images/internal-link-arrow.svg"/><div class="black-module-line"></div></a></div></div>{% endraw %}
+<div class="section-instagram"><div class="section-div"><h2 class="bg-chapter-font t-display">INSTAGRAM</h2><a class="link-block---teaser-module inline-block" href="https://www.instagram.com/wir2liebenwein/" target="_blank" rel="noopener"><img alt="" class="post-thumb-image" sizes="(max-width: 991px) 100vw, 960px" src="/assets/images/404_header.jpg" srcset="/assets/images/404_header-p-500.jpeg 500w, /assets/images/404_header-p-800.jpeg 800w, /assets/images/404_header-p-1080.jpeg 1080w, /assets/images/404_header-p-1600.jpeg 1600w, /assets/images/404_header.jpg 2000w"/><h3 class="oswald-no-hover t-title">Auf Insta Gibt's noch mehr Spass mit Wein</h3><div class="link">Mehr Erfahren</div><img alt="" class="arrow-back" src="/assets/images/internal-link-arrow.svg"/><div class="black-module-line"></div></a></div></div>{% endraw %}

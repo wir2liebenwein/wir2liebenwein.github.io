@@ -1,6 +1,7 @@
 # wir2liebenwein.de — how the website is built
 
-*Written October 2026, during the move from Webflow to this repository.*
+*Written October 2026, during the move from Webflow to this repository. Updated
+November 2026 after the semantic rebuild (§11).*
 
 This document describes the website completely: what is on it, how every part is
 made, where the content lives and what to watch out for. It is meant for developers
@@ -17,9 +18,10 @@ Burgenland (Austria). The website is a brochure site with a **blog ("Neues")**, 
 **downloadable wine list ("Weinliste" / Sortiment PDF)**, portraits of the
 winemakers and some info pages. It was built in **Webflow** in 2019/2020. In
 October 2026 it was exported and rebuilt as a static site with
-[**Eleventy**](https://www.11ty.dev/). The look is **pixel-identical**: the original
-Webflow CSS, JavaScript and HTML markup are reused unchanged, and only the blog is
-generated from Markdown files.
+[**Eleventy**](https://www.11ty.dev/), first as a pixel-identical copy of the Webflow
+export. In autumn 2026 the code was rebuilt to be semantic, accessible and maintainable
+without changing the look (§11): no more jQuery or Webflow runtime, one stylesheet, one
+small script. The blog is generated from Markdown files.
 
 ## 2. Repository layout
 
@@ -52,14 +54,16 @@ generated from Markdown files.
 │   │   ├── layouts/base.njk      <head>, nav, footer, scripts – shared by all pages
 │   │   └── partials/             nav, footer, blog post, homepage teaser, blog list
 │   └── assets/
-│       ├── css/webflow.css       original Webflow stylesheet (do not edit)
-│       ├── css/eigene-anpassungen.css   overrides go here
-│       ├── js/                   jQuery 3.5.1 + Webflow runtime (do not edit)
-│       ├── fonts/                self-hosted fonts incl. W2LW icon font
-│       └── images/               all non-blog images
+│       ├── css/site.css          the only stylesheet (tokens in :root, see §11)
+│       ├── js/site.js            menu, nav on scroll, parallax, dialog, slider, lightbox
+│       ├── fonts/                WOFF2 text fonts (Latin subset) + W2LW icon font
+│       └── images/               all non-blog images; optimiert/ = WebP stage images
 └── tools/
     ├── neuer-beitrag.mjs         scaffolds a new post (folder, resized images, index.md)
     ├── bilder-verkleinern.mjs    resizes images to ≤1600 px / web-safe names
+    ├── parity/                   screenshot comparison, axe and behaviour checks (§11)
+    ├── fonts/                    TTF originals + subset.sh (rebuilds the WOFF2 files)
+    ├── bilder/buehnen-webp.mjs   rebuilds the WebP stage images
     └── migration/                one-time Webflow migration scripts + CSV (reference only)
 ```
 
@@ -85,8 +89,8 @@ generated from Markdown files.
 | `/impressum/`, `/datenschutz/` | `seiten/*.html` | static | Legal pages |
 | `/404.html` | `seiten/404.html` | static | Shown for unknown URLs |
 
-Static pages are the original Webflow HTML (body only). Their front matter holds the
-`<title>`, meta description and the Webflow page id. They are copied 1:1;
+Static pages are hand-maintained HTML (body only), originally from the Webflow export.
+Their front matter holds the `<title>` and meta description. They are copied 1:1;
 `htmlTemplateEngine: false` makes sure nothing inside them is interpreted as a template.
 
 URLs keep the Webflow paths. The new site serves them with a trailing slash
@@ -96,22 +100,22 @@ URLs keep the Webflow paths. The new site serves them with a trailing slash
 
 `src/_includes/layouts/base.njk` wraps every page:
 
-1. **`<head>`**: title/description/OpenGraph from front matter, `webflow.css`,
-   `eigene-anpassungen.css`, the Webflow `w-mod-js` snippet, favicon/webclip, and a
-   1280 px max-width rule for big screens.
+1. **`<head>`**: title/description/OpenGraph from front matter, canonical URL and
+   og:url/og:image/og:locale (from `src/_data/site.json`), font preloads, `site.css`,
+   favicon/webclip. The 404 page gets `noindex`.
 2. **Navigation** (`partials/nav.njk`): logo (wordmark + sign) and the links Neues ·
    Bottleshop · Winzer / Wein · Verkostung · Über Uns · Bestellen · Sortiment.
    "Bestellen" and "Sortiment" carry icon-font glyphs. On tablet and phone (below
-   992 px) it collapses into a burger menu, which is handled by `webflow.js`. The active
-   link gets `w--current`, which is decided at build time from `page.url`.
+   992 px) it collapses into a burger menu (a real `<button>`, handled by `site.js`).
+   The active link gets `w--current` + `aria-current`, decided at build time from
+   `page.url`. The bar itself is the `<header>`; a skip link "Zum Inhalt springen"
+   comes first, the page content is `<main id="inhalt">`.
 3. **Page content.**
 4. **Footer** (`partials/footer.njk`): "Der Schnell-Bestell-Kontakt" (text, phone
    +49 172 855 80 60, info@wir2liebenwein.de, link to Bestell-Kontakt), "Hier sind wir
    auch unterwegs" (Facebook, Instagram icons), "©Copyright 2020 WIR2LIEBENWEIN",
    Datenschutz & Impressum.
-5. **Scripts**: jQuery 3.5.1 and the Webflow runtime. The Neues page loads a
-   different runtime bundle (`webflow.19e9a5f9…js`) that additionally contains the
-   **slider** and **lightbox** modules (front matter `webflow_bundle: slider`).
+5. **Script**: `site.js` (deferred, ~4 KB gzip), the same file on every page.
 
 Most pages also contain these blocks in their own HTML: the big grey section titles
 ("Neuigkeiten", "Winzer", …), teaser modules (image + Oswald headline + "Mehr
@@ -123,17 +127,28 @@ subject "Verkostungstermine".
 **There are no forms, no cookies, no analytics and no tracking scripts.** External
 requests: only the YouTube embed on `/pannobile/`.
 
-### Webflow runtime and interactions
+### Interactions (`site.js` + CSS)
 
-`webflow.js` runs the burger menu, the blog slider and lightbox, and a few
-"Interactions" (IX2), for example the hover zoom on the homepage post thumbnails. IX2
-finds its animations through the `data-w-id` attributes on elements and the
-`data-wf-page` / `data-wf-site` attributes on `<html>`. **Keep those attributes
-untouched**, or the animations silently stop.
+Timings and values are Webflow's own, taken from its interaction data:
+
+| Behaviour | How |
+|---|---|
+| Burger menu < 992 px | `.nav-toggle` toggles `aria-expanded`; menu slides 400 ms ease; Esc / link click close |
+| Nav on scroll | `.navigation-max-width.is-hidden` = translateY(-72px), 400 ms outQuad / back inQuad |
+| Thumbnail hover | CSS only: `.post-thumb-image:hover` scale 1.01 |
+| Parallax (home, ≥ 992 px) | `.wrapper-image-divider` -22 → -500 px while `.bar-photo` scrolls through, recomputed per scroll event like Webflow |
+| Artist modal | `<dialog id="kuenstler">` at the end of the page; opened by `[data-dialog-open="kuenstler"]`, closed by `[data-dialog-close]` |
+| Slider | `.w-slider` in posts with `darstellung: slider`; buttons, dots, swipe, endless |
+| Lightbox | links with `data-lightbox="<group>"` pointing at the full image; one group per post |
+
+With `prefers-reduced-motion: reduce` the nav stays put, the parallax is off and the
+slider switches without sliding.
 
 ### Fonts
 
-All self-hosted in `src/assets/fonts/`, declared in `webflow.css`:
+All self-hosted in `src/assets/fonts/`, declared in `site.css`. Text fonts are WOFF2
+with a Latin subset (`tools/fonts/subset.sh`, originals in `tools/fonts/ttf/`); a
+character outside that range (e.g. ő) falls back to a system font.
 
 | Font | Used for |
 |---|---|
@@ -180,8 +195,8 @@ Post text in Markdown…
 
 | Field | Required | Webflow field | Shown as |
 |---|---|---|---|
-| `titel` | yes | Überschrift | `<h2 class="heading">` |
-| `unterzeile` | yes | Tag | `<div class="post-tag">` (orange caps) |
+| `titel` | yes | Überschrift | `<h2 class="post-title t-section">` |
+| `unterzeile` | yes | Tag | `<p class="post-tag t-kicker">` (orange caps) |
 | `datum` | yes | Date (+ Created On time) | not shown, only sorts |
 | `darstellung` | yes | Einzelbild / Slider / Lightbox switches | see 5.3 |
 | `bilder` | yes, ≥1 | Teaser/Mainimage/Slide 1 … Slide 5 | see 5.3; `bilder[0]` is also the homepage thumbnail |
@@ -210,8 +225,9 @@ real rules, worked out from the live site rather than from the field names, are:
 Current split: 50 einzelbild, 15 lightbox, 4 slider. The lightbox row is rendered
 even when there is only one image, because its 20 px top padding is part of the
 original spacing. Post images are always shown at full column width (max 800 px).
-`eigene-anpassungen.css` enforces this, matching what Webflow did through
-`srcset`/`sizes`.
+`site.css` enforces this. At build time every post image also gets WebP variants
+(400/800/1200/1600 px, never larger than the original) in `_site/bilder/` via
+`srcset`; the lightbox links to the original file.
 
 ### 5.4 Under every post
 
@@ -275,8 +291,8 @@ folder up one level and delete the `veroeffentlicht` line.
 
 These were partly Webflow CMS collections ("Winzer", "Weinpakete"). No export of those
 collections exists, so they were frozen as HTML. They rarely change. To edit them,
-change the text directly in `src/seiten/…html`, keep the class names, and leave the
-`data-w-id` attributes alone.
+change the text directly in `src/seiten/…html` and keep class names, `id`s and
+`data-…` attributes (styles and `site.js` depend on them).
 
 **Opening hours are written by hand in three places**, each formatted differently:
 `seiten/sortiment.html`, `seiten/bottleshop.html` and `seiten/bestell-kontakt.html`.
@@ -335,4 +351,56 @@ in some mobile image heights.
    YouTube embed on `/pannobile/` should be mentioned or switched to
    `youtube-nocookie.com`.
 5. Small things: the copyright line says 2020, the homepage `<title>` is just "W2LW",
-   and the newest post contains the typo "Ticktes".
+   and the newest post contains the typo "Ticktes" and a stray backslash
+   ("… näher zu bringen.\\").
+
+Point 4 is partly done: the video now uses `youtube-nocookie.com`; the text of the
+Datenschutzerklärung still needs updating.
+
+## 11. The semantic rebuild (autumn 2026)
+
+Goal: clean, accessible, hand-maintainable code **without changing the look**. Every
+step was checked against screenshots of commit `208910b` (`tools/parity/`); the few
+deliberate visual changes were approved by Christoph (decisions Q1–Q8 in the audit plan).
+
+**Structure.** Every page has `header` (the sticky bar), `nav` (menu as a list),
+`main#inhalt`, `footer`, a skip link, and exactly one `h1`. Grey chapter titles are
+`h2`, teaser/winemaker/package names `h3`. Posts are `<article>`s in a list; the
+artist modal and the lightbox are native `<dialog>`s.
+
+**Type roles.** `h1`–`h6` are neutral; the look comes from role classes:
+
+| Class | Role | Token |
+|---|---|---|
+| `.t-display` | giant grey chapter titles | `--fs-display` |
+| `.t-hero` | headline on a stage photo | `--fs-hero` |
+| `.t-page` | page title on text pages | `--fs-page` |
+| `.t-section` | post titles, section headings | `--fs-section` |
+| `.t-title` | teaser titles, footer titles | `--fs-title` |
+| `.t-subtitle` | package price | `--fs-subtitle` |
+| `.t-lead` | newsletter text | `--fs-lead` |
+| `.t-quote` | large serif pull quotes, 404 quote | `--fs-quote` |
+| `.t-kicker`, `.t-byline`, `.t-label` | orange kicker, artist line, caps labels | `--fs-body` |
+
+Sizes and line heights are set once per breakpoint in `:root` (991 / 767 / 479 px).
+Inside post text (`.richtext`) plain `h1`–`h6` keep their element styles, so Markdown
+headings in posts still work.
+
+**CSS.** `site.css` is the old `webflow.css` + overrides in their original order, minus
+every rule that matched nothing. Brand colours are variables (`--main-black`,
+`--link-color`, `--orange`, `--footer-bg`, `--chapter-grey`, `--rosa`, …). The grid
+keeps Webflow's float model under new names (`row`, `col`, `col-9`, `col-md-6`,
+`col-stack`): the stage and newsletter rows are flex containers in which the clearfix
+pseudo-elements count, so a switch to CSS grid would move pixels. Webflow class names
+remain only for components now driven by `site.js` (`w-nav*`, `w-slider*`,
+`w-lightbox*`, `w-pagination*`, `w-icon-*`, `w--current`).
+
+**Checking a change.** Make the baseline once and compare after every edit:
+
+```bash
+python3 tools/parity/shots.py <site> <out>        # 43 pages × 1440/768/600/390 px
+python3 tools/parity/states.py <site> <out>       # menu, nav, hover, parallax, modal, slider, lightbox
+tools/parity/check.sh                             # build + both + pixel diff
+python3 tools/parity/behaviour.py _site           # keyboard / focus / Esc checks
+python3 tools/parity/axe.py _site path/to/axe.min.js
+```
