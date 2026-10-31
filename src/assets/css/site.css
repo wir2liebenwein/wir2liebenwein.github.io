@@ -974,7 +974,8 @@ button, [type="button"] {
   --footnote-grey: #b3b3b3;
   --main-black: #141414;
   --white: white;
-  --dim-grey: #676767;
+  /* Q6: Fußzeilen-Rechtszeile, 4,65:1 auf --footer-bg (vorher #676767, 2,07:1) */
+  --footer-legal: #a3a3a3;
   /* Schriftgrößen / Zeilenhöhen der Typo-Rollen (.t-*), je Breakpoint unten neu gesetzt */
   --fs-display: 192px;
   --lh-display: 192px;
@@ -1596,7 +1597,7 @@ a:hover {
 }
 
 .footer-fusszeile-text {
-  color: var(--dim-grey);
+  color: var(--footer-legal);
   letter-spacing: .3px;
   text-transform: uppercase;
   border-bottom: 0 #0000;
